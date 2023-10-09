@@ -65,5 +65,7 @@ Explain the concept of protected routes in your React frontend. Describe how cer
     ```
 
 ### For server side you can to use this laravel server
-- gh repo clone ABDALLAH-ATGUIRI/e-commerce-laravel
+   ```
+      gh repo clone ABDALLAH-ATGUIRI/e-commerce-laravel
+   ```
 
