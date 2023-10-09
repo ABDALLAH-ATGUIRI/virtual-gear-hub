@@ -12,14 +12,14 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <Router>
-      <ProductProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <ProductProvider>
           <Routes>
             <Route path="/*" element={<App />} />
             <Route path="/auth/*" element={<Auth />} />
           </Routes>
-        </AuthProvider>
-      </ProductProvider>
+        </ProductProvider>
+      </AuthProvider>
     </Router>
   </StrictMode>
 );

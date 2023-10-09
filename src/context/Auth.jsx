@@ -42,7 +42,6 @@ function AuthProvider({ children }) {
 
   const validateToken = async () => {
     const token = localStorage.getItem("token");
-
     if (!token) return
 
     await instance
@@ -61,6 +60,7 @@ function AuthProvider({ children }) {
       })
       .catch((err) => {
         console.log("error", err);
+        localStorage.clear();
       });
   }
 
