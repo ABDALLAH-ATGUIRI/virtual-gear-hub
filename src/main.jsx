@@ -6,6 +6,7 @@ import "./index.css";
 import { ProductProvider } from "./context/Product.jsx";
 import Auth from "./Pages/auth";
 import AuthProvider from "./context/Auth.jsx";
+import ErrorPage from "./components/404.jsx";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -15,8 +16,9 @@ root.render(
       <AuthProvider>
         <ProductProvider>
           <Routes>
-            <Route path="/*" element={<App />} />
-            <Route path="/auth/*" element={<Auth />} />
+            <Route path="/" element={<App />} />
+            <Route path='/auth/*' element={<Auth />} />
+            <Route path="/*" element={<ErrorPage />} />
           </Routes>
         </ProductProvider>
       </AuthProvider>
