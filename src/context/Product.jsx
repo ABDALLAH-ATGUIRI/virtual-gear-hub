@@ -1,24 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { instance } from "../utils/api/axios";
 import { AuthContext } from "./Auth";
-import Swal from "sweetalert2";
 
 const ProductContext = createContext();
 
 export const useProductContext = () => useContext(ProductContext);
-
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'bottom-end',
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
 
 export const ProductProvider = ({ children }) => {
 
@@ -50,10 +36,6 @@ export const ProductProvider = ({ children }) => {
       headers: { Authorization: `Bearer ${auth.token}`, "Content-Type": "multipart/form-data" }
     }).then(() => {
       fetchMyProducts()
-      Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-      })
     })
       .catch((e) => {
         console.log(e);
@@ -66,10 +48,6 @@ export const ProductProvider = ({ children }) => {
       _methode: 'PUT'
     }).then(({ data }) => {
       setProducts(data.products);
-      Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-      })
     })
       .catch((e) => {
         console.log(e);
@@ -80,11 +58,7 @@ export const ProductProvider = ({ children }) => {
     await instance.delete(`/products/${productId}`, {
       headers: { Authorization: `Bearer ${auth.token}` }
     }).then(() => {
-      setProducts(products.filter(p => p.id !== productId))
-      Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-      })
+      fetchMyProducts()
     })
       .catch((e) => {
         console.log(e);
