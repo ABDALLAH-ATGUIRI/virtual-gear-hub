@@ -16,9 +16,9 @@ root.render(
       <AuthProvider>
         <ProductProvider>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/*" element={<App />} />
             <Route path='/auth/*' element={<Auth />} />
-            <Route path="/*" element={<ErrorPage />} />
+            {/* <Route path="/*" element={<ErrorPage />} /> */}
           </Routes>
         </ProductProvider>
       </AuthProvider>
