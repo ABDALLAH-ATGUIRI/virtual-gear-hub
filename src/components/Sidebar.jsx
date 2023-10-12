@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SIDEBARMENUS } from "../utils/api/menus";
 import {
     Card,
@@ -17,7 +18,6 @@ import {
 } from "@heroicons/react/24/solid";
 
 import { Bars3BottomLeftIcon, Bars3BottomRightIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
 
 function Sidebar() {
     const [open, setOpen] = useState(0);
@@ -56,7 +56,7 @@ function Sidebar() {
                                 <ListItem className="p-0" selected={open === i + 1}>
                                     <AccordionHeader onClick={() => handleOpen(i + 1)} className="border-b-0 p-3 flex gap-2">
                                         <ListItemPrefix>
-                                            <item.icon className="w-7" />
+                                            <item.icon className="w-6" />
                                         </ListItemPrefix>
                                         <Typography color="blue-gray" className={`mr-auto font-semibold text-lg ${!openSidebar ? 'blok' : 'hidden'}`}>
                                             {item.name}
@@ -67,14 +67,14 @@ function Sidebar() {
                                 <AccordionBody className={`py-1 pl-8 ${open !== i + 1 ? 'hidden' : 'block'}`}>
                                     <List className="p-0">
                                         {
-                                            item.children.map((child, i) => <><Link to={item.link}><ListItem key={`child-${i}`} > {child.name}</ListItem ></Link></>)
+                                            item.children.map((child, i) => <Link to={child.link} key={`child-${i}`}><ListItem > {child.name}</ListItem ></Link>)
                                         }
                                     </List>
                                 </AccordionBody>
                             </Accordion >
                         } else {
-                            return <ListItem key={`parent-${i}`} className="flex gap-3">
-                                <Link to={item.link}>
+                            return <ListItem key={`parent-${i}`}>
+                                <Link to={item.link} className="flex gap-3">
                                     <ListItemPrefix>
                                         <item.icon className={`w-6`} />
                                     </ListItemPrefix>
@@ -88,7 +88,7 @@ function Sidebar() {
                 }
 
                 <hr className="my-2 border-blue-gray-50" />
-                
+
                 <ListItem className="flex gap-2 text-red-600 font-semibold">
                     <ListItemPrefix>
                         <PowerIcon className={`w-6`} />

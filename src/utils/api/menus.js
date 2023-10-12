@@ -16,19 +16,19 @@ export const SIDEBARMENUS = [
         id: 1,
         name: "Analytics",
         icon: "",
-        link: "/Analytics"
+        link: "analytics"
       },
       {
         id: 2,
         name: "Reports",
         icon: "",
-        link: "/Reports"
+        link: "reports"
       },
       {
         id: 3,
         name: "Projects",
         icon: "",
-        link: "/Projects"
+        link: "projects"
       }
     ]
   },
@@ -41,19 +41,19 @@ export const SIDEBARMENUS = [
         id: 1,
         name: "orders",
         icon: "",
-        link: "/orders"
+        link: "orders"
       },
       {
         id: 2,
         name: "products",
-        icon: "products",
-        link: "/products"
+        icon: "",
+        link: "products"
       },
       {
         id: 3,
         name: "categories",
-        icon: "categories",
-        link: "/categories"
+        icon: "",
+        link: "categories"
       }
     ]
   },
@@ -61,18 +61,18 @@ export const SIDEBARMENUS = [
     id: 5,
     name: "Inbox",
     icon: InboxIcon,
-    link: "/Inbox"
+    link: "/inbox"
   },
   {
     id: 3,
     name: "Profile",
     icon: UserCircleIcon,
-    link: "/Profile"
+    link: "/profile"
   },
   {
     id: 4,
     name: "Settings",
     icon: Cog6ToothIcon,
-    link: "/Settings"
+    link: "/settings"
   }
 ];
