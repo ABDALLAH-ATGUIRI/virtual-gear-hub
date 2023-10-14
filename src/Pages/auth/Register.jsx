@@ -1,8 +1,15 @@
+import {
+    Card,
+    Input,
+    Button,
+    Typography,
+} from "@material-tailwind/react";
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/Auth";
 
-const Register = () => {
+const RegistrationForm = () => {
+
     const [userInfo, setUserInfo] = useState({
         name: "",
         email: "",
@@ -17,40 +24,40 @@ const Register = () => {
         e.preventDefault()
         register(userInfo)
     }
+
     return (
-        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <Card color="transparent" shadow={false} className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <Typography variant="h4" color="blue-gray" className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Create and account
-            </h1>
-            <form className="space-y-6 md:space-y-6" action="#" onSubmit={(e) => handleChange(e)}>
-                <div>
-                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-                    <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " placeholder="Abdallah Atguiri" required="" onChange={(e) => { setUserInfo({ ...userInfo, name: e.target.value }) }} />
+            </Typography>
+            <form className="py-6" action="#" onSubmit={(e) => handleChange(e)}>
+                <div className="mb-4 flex flex-col gap-10">
+                    <Input size="lg" color="orange" variant="outlined" placeholder="Abdallah atguiri" label="Name" onChange={(e) => { setUserInfo({ ...userInfo, name: e.target.value }) }} />
+                    <Input size="lg" color="orange" variant="outlined" label="Email" placeholder="AbdallahAtguiri@gmail.com" onChange={(e) => { setUserInfo({ ...userInfo, email: e.target.value }) }} />
+                    <Input type="password" color="orange" variant="outlined" size="lg" label="Password" placeholder="................" onChange={(e) => { setUserInfo({ ...userInfo, password: e.target.value }) }} />
+                    <Input type="password" color="orange" variant="outlined" size="lg" label="Confirm password" placeholder="................" onChange={(e) => { setUserInfo({ ...userInfo, password_confirmation: e.target.value }) }} />
                 </div>
-                <div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " placeholder="name@company.com" required="" onChange={(e) => { setUserInfo({ ...userInfo, email: e.target.value }) }} />
-                </div>
-                <div>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " required="" onChange={(e) => { setUserInfo({ ...userInfo, password: e.target.value }) }} />
-                </div>
-                <div>
-                    <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                    <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " required="" onChange={(e) => { setUserInfo({ ...userInfo, password_confirmation: e.target.value }) }} />
-                </div>
-                <button type="submit" className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create an account</button>
+                <Button fullWidth className="w-full mt-8 text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+                    Register
+                </Button>
                 <div className="w-full flex  items-center justify-between">
-                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <Link to="/auth/login" className="font-medium text-primary hover:underline ">Login here</Link>
-                    </p>
-                    <span className="text-sm font-light text-gray-500 dark:text-gray-400">
-                        <Link to="/" className="font-medium text-primary hover:underline "> Go To Home <span aria-hidden="true">&rarr;</span></Link>
-                    </span>
+                    <Typography color="gray" className="mt-4 text-center font-normal">
+                        Already have an account?{" "}
+                        <Link to="/auth/login" className="font-medium text-primary hover:underline ">
+                            Sign In
+                        </Link>
+                    </Typography>
+                    <Typography color="gray" className="mt-4 text-center font-normal">
+                        Go to home{" "}
+                        <Link to="/" className="font-medium text-primary hover:underline ">
+                            home <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                    </Typography>
                 </div>
+
             </form>
-        </div>
-    )
+        </Card>
+    );
 }
 
-export default Register
+export default RegistrationForm
