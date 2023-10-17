@@ -1,6 +1,6 @@
-import { Outlet, Route, Routes } from "react-router-dom";
-import { RequireAuth } from "./context/Auth";
 import { Fragment, Suspense } from "react";
+import { RequireAuth } from "./features/auth/RequireAuth";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Dashboard from "./Pages/dashboard";
 import Header from "./components/Header";
 import Home from "./Pages/Home";
