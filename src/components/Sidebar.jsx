@@ -30,7 +30,7 @@ function Sidebar() {
 
     useEffect(() => { if (openSidebar === true) setOpen(0) }, [openSidebar])
     return (
-        <Card className={`h-[calc(100vh-2rem)] fixed z-40 p-4 shadow-xl shadow-blue-gray-900/5 ${openSidebar ? '!w-24' : '!w-80'}`}>
+        <Card className={`h-[calc(100vh-4rem)] fixed z-40 p-4 shadow-xl shadow-blue-gray-900/5 ${openSidebar ? '!w-24' : '!w-80'}`}>
             <List>
                 <ListItem className="flex gap-3">
                     <ListItemPrefix className="!flex flex-1 !items-end !justify-end" onClick={() => setOpenSidebar(!openSidebar)}>
