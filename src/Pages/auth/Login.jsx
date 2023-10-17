@@ -71,11 +71,9 @@ const Login = () => {
             <Typography variant="h4" color="blue-gray" className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
             </Typography>
-            <form className="py-6" action="#" onSubmit={(e) => handleSubmit(e)}>
-                <div className="mb-4 flex flex-col gap-10">
-                    <Input type='email' value={user} color="orange" variant="outlined" size="lg" label="Email" placeholder="AbdallahAtguiri@gmail.com" onChange={(e) => { handleUserInput(e) }} required />
-                    <Input type="password" value={pwd} color="orange" variant="outlined" size="lg" label="Password" placeholder="................" onChange={(e) => { handlePwdInput(e) }} required />
-                </div>
+            <form className="py-6 flex flex-col gap-10" action="#" onSubmit={(e) => handleSubmit(e)}>
+                <Input type='email' value={user} color="orange" variant="outlined" size="lg" label="Email" placeholder="AbdallahAtguiri@gmail.com" onChange={(e) => { handleUserInput(e) }} required />
+                <Input type="password" value={pwd} color="orange" variant="outlined" size="lg" label="Password" placeholder="................" onChange={(e) => { handlePwdInput(e) }} required />
                 <Button
                     fullWidth
                     type="submit"
@@ -83,18 +81,6 @@ const Login = () => {
                 >
                     Sign In
                 </Button>
-                <div className="w-full">
-                    <Typography color="gray" className="mt-4 text-center font-normal">
-                        Don’t have an account yet ?{" "}
-                        <Link to="/auth/register" className="font-medium text-primary hover:underline "> Sign up</Link>
-                    </Typography>
-                    <Typography color="gray" className="mt-4 text-center font-normal">
-                        Go to home{" "}
-                        <Link to="/" className="font-medium text-primary hover:underline ">
-                            home <span aria-hidden="true">&rarr;</span>
-                        </Link>
-                    </Typography>
-                </div>
             </form>
             {
                 message.message ?
@@ -102,6 +88,18 @@ const Login = () => {
                         {isLoading ? 'loading...' : message.message}
                     </Alert> : <></>
             }
+            <div className="mt-4 text-center font-normal">
+                <Typography color="gray" >
+                    Don’t have an account yet ?{" "}
+                    <Link to="/auth/register" className="font-medium text-primary hover:underline "> Sign up</Link>
+                </Typography>
+                <Typography color="gray">
+                    Go to home{" "}
+                    <Link to="/" className="font-medium text-primary hover:underline ">
+                        home <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                </Typography>
+            </div>
 
         </Card>
     )
