@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCurrentUser } from '../features/auth/authSlice';
 
+
 import {
     Navbar,
-    Collapse,
     Typography,
     Button,
-    IconButton,
     Menu,
     MenuHandler,
     Avatar,
@@ -85,34 +84,87 @@ const ProfileMenu = () => {
                 {profileMenuItems.map(({ label, icon, link }, key) => {
                     const isLastItem = (key === profileMenuItems.length - 1);
                     return (
-                        <>
-                            <Link
-                                to={link}
-                                key={label}
-                            >
-                                <MenuItem
-                                    onClick={closeMenu}
-                                    className={`flex items-center py-1 gap-2 rounded 
+                        <Link
+                            to={link}
+                            key={label}
+                        >
+                            <MenuItem
+                                onClick={closeMenu}
+                                className={`flex items-center py-1 gap-2 rounded 
                                         ${isLastItem ? "hover:bg-gray-500/10 focus:bg-gray-500/10 active:bg-gray-500/10" : "hover:bg-gray-500/10 focus:bg-gray-500/10 active:bg-gray-500/10"}`}
-                                >
+                            >
 
-                                    {createElement(icon, {
-                                        className: `h-5 w-5 ${isLastItem ? "text-red-500" : ""}`,
-                                        strokeWidth: 2,
-                                    })}
-                                    <Typography
-                                        as="span"
-                                        variant="h1"
-                                        className="font-normal"
-                                        color={isLastItem ? "red" : "inherit"}
-                                    >
-                                        {label}
-                                    </Typography>
-                                </MenuItem>
-                            </Link>
-                        </>
+                                {createElement(icon, {
+                                    className: `h-5 w-5 ${isLastItem ? "text-red-500" : ""}`,
+                                    strokeWidth: 2,
+                                })}
+                                <Typography
+                                    as="span"
+                                    variant="h1"
+                                    className="font-normal"
+                                    color={isLastItem ? "red" : "inherit"}
+                                >
+                                    {label}
+                                </Typography>
+                            </MenuItem>
+                        </Link>
                     );
                 })}
+            </MenuList>
+        </Menu>
+    )
+}
+
+
+const MobileMenu = () => {
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const user = useSelector(selectCurrentUser)
+
+    return (
+        <Menu
+            open={isMenuOpen}
+            handler={setIsMenuOpen}
+            placement="bottom-end"
+        >
+            <MenuHandler>
+                <Button
+                    variant="text"
+                    color="blue-gray"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    {isMenuOpen ? (
+                        <XMarkIcon className="w-9" />
+                    ) : (
+                        <Bars3Icon className="w-9" />
+                    )}
+                </Button>
+            </MenuHandler>
+            <MenuList key={Math.random(1)} className="p-3 z-20 w-48 flex flex-col gap-2 right-0 lg:hidden">
+                {/* <NavList /> */}
+                {user ?
+                    <ProfileMenu /> :
+                    <>
+                        <MenuItem variant="outlined" size="sm" color="blue-gray" >
+                            <Link to='auth/login'>
+                                <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                                    Sign In
+                                </Button>
+                            </Link>
+
+                        </MenuItem>
+                        <MenuItem variant="outlined" size="sm" color="blue-gray">
+                            <Link to='auth/register'>
+                                <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                                    Sign Up
+                                </Button>
+                            </Link>
+                        </MenuItem>
+                    </>
+
+                }
+
+
             </MenuList>
         </Menu>
     )
@@ -140,8 +192,8 @@ export function Header() {
                 >
                     Logo
                 </Typography>
-                <div className="hidden lg:block">
-                    {/* <NavList /> */}
+                <div className="block items-center gap-2 lg:hidden">
+                    <MobileMenu />
                 </div>
                 <div className="hidden gap-2 lg:flex">
                     {
@@ -161,38 +213,7 @@ export function Header() {
                     }
                 </div>
 
-                <IconButton
-                    variant="text"
-                    color="blue-gray"
-                    className="lg:hidden"
-                    onClick={() => setOpenNav(!openNav)}
-                >
-                    {openNav ? (
-                        <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-                    ) : (
-                        <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-                    )}
-                </IconButton>
             </div>
-            <Collapse open={openNav}>
-                {/* <NavList /> */}
-                <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-                    {user ?
-                        <ProfileMenu /> :
-                        <>
-                            <Link to='auth/login'>
-                                <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-                                    Sign In
-                                </Button>
-                            </Link>
-
-                            <Button variant="gradient" size="sm" fullWidth>
-                                Sign Up
-                            </Button>
-                        </>
-                    }
-                </div>
-            </Collapse>
         </Navbar>
     );
 }
