@@ -15,7 +15,9 @@ This React frontend is part of our e-commerce platform, serving as the user inte
    - [Configuration](#configuration)
 6. [Contributing](#contributing)
 
-## Project Structure
+## Project View
+1. This is page of regester: I'll let you explore more on your own 😉
+   ![Screenshot 2023-10-09 223353](https://github.com/ABDALLAH-ATGUIRI/e-commerce-react/assets/94124850/15b17f23-af3b-446e-b95b-15215f3b2bde)
 
 ### Folders and Files
 
@@ -61,3 +63,9 @@ Explain the concept of protected routes in your React frontend. Describe how cer
     ```
     yarn dev
     ```
+
+### For server side you can to use this laravel server
+   ```
+      gh repo clone ABDALLAH-ATGUIRI/e-commerce-laravel
+   ```
+
