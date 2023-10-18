@@ -6,7 +6,7 @@ const productSlice = createSlice({
     products: [],
     pagination: [],
     currentPage: 1,
-    loading: false
+    productLoading: false
   },
   reducers: {
     setProductsCredentials: (state, action) => {

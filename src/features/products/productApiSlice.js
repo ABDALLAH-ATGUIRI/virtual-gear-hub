@@ -2,7 +2,7 @@ import { apiSlice } from "../../app/api/apiSlice";
 
 export const productApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    fetch: builder.mutation({
+    fetchAllProducts: builder.mutation({
       query: (credentials) => ({
         url: "/products",
         method: "GET",
@@ -10,7 +10,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         params: { ...credentials }
       })
     }),
-    create: builder.mutation({
+    createProduct: builder.mutation({
       query: (credentials) => ({
         url: "/products",
         method: "POST",
@@ -18,7 +18,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         params: { ...credentials }
       })
     }),
-    update: builder.mutation({
+    updateProduct: builder.mutation({
       query: (credentials) => ({
         url: "/products",
         method: "PUT",
@@ -26,7 +26,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         params: { ...credentials }
       })
     }),
-    delete: builder.mutation({
+    deleteProduct: builder.mutation({
       query: (credentials) => ({
         url: "/products",
         method: "DELETE",
@@ -34,7 +34,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         params: { ...credentials }
       })
     }),
-    fetchByUser: builder.mutation({
+    fetchProductsByUser: builder.mutation({
       query: (credentials) => ({
         url: "/products/user-products",
         method: "GET",
@@ -46,9 +46,9 @@ export const productApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useFetchMutation,
-  useFetchByUserMutation,
-  useCreateMutation,
-  useUpdateMutation,
-  useDeleteMutation
+  useFetchAllProductsMutation,
+  useUpdateProductMutation,
+  useCreateProductMutation,
+  useDeleteProductMutation,
+  useFetchProductsByUserMutation
 } = productApiSlice;
