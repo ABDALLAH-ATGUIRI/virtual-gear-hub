@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SIDEBARMENUS } from "../utils/api/menus";
+import { SIDEBARMENUS } from "../utils/menus";
 import {
     Card,
     Typography,
@@ -30,10 +30,10 @@ function Sidebar() {
 
     useEffect(() => { if (openSidebar === true) setOpen(0) }, [openSidebar])
     return (
-        <Card className={`h-[calc(100vh-4rem)] fixed z-40 p-4 shadow-xl shadow-blue-gray-900/5 ${openSidebar ? '!w-24' : '!w-80'}`}>
+        <Card className={`!h-full fixed z-30 px-1 shadow-xl shadow-blue-gray-900/5 mt-20 rounded-none ${openSidebar ? '!w-20' : '!w-64'}`}>
             <List>
-                <ListItem className="flex gap-3">
-                    <ListItemPrefix className="!flex flex-1 !items-end !justify-end" onClick={() => setOpenSidebar(!openSidebar)}>
+                <ListItem className={`flex ${openSidebar ? 'w-14' : ''}`}>
+                    <ListItemPrefix className={`!flex flex-1 !items-end !justify-end `} onClick={() => setOpenSidebar(!openSidebar)}>
                         {
                             openSidebar ? <Bars3BottomLeftIcon className={`w-7`} /> : <Bars3BottomRightIcon className={`w-7`} />
                         }
@@ -52,13 +52,14 @@ function Sidebar() {
                                         className={`mx-auto h-4 w-4 transition-transform ${open === i + 1 ? "rotate-180" : ""}`}
                                     />
                                 }
+                                className={`${openSidebar ? '!w-16' : ''}`}
                             >
                                 <ListItem className="p-0" selected={open === i + 1}>
                                     <AccordionHeader onClick={() => handleOpen(i + 1)} className="border-b-0 p-3 flex gap-2">
                                         <ListItemPrefix>
                                             <item.icon className="w-6" />
                                         </ListItemPrefix>
-                                        <Typography color="blue-gray" className={`mr-auto font-semibold text-lg ${!openSidebar ? 'blok' : 'hidden'}`}>
+                                        <Typography color="blue-gray" className={`mr-auto font-semibold text-blue-gray-700 text-[16px] ${!openSidebar ? 'blok' : 'hidden'}`}>
                                             {item.name}
                                         </Typography>
                                     </AccordionHeader>
@@ -73,7 +74,7 @@ function Sidebar() {
                                 </AccordionBody>
                             </Accordion >
                         } else {
-                            return <ListItem key={`parent-${i}`}>
+                            return <ListItem key={`parent-${i}`} className={`${openSidebar ? '!w-16' : ''}`}>
                                 <Link to={item.link} className="flex gap-3">
                                     <ListItemPrefix>
                                         <item.icon className={`w-6`} />
@@ -87,9 +88,9 @@ function Sidebar() {
                     })
                 }
 
-                <hr className="my-2 border-blue-gray-50" />
+                <hr className={` ${openSidebar ? 'w-16' : ''} my-2 border-blue-gray-200`} />
 
-                <ListItem className="flex gap-2 text-red-600 font-semibold">
+                <ListItem className={`flex gap-2 text-red-600 font-semibold hover:bg-red-400/40 ${openSidebar ? 'w-16' : ''}`}>
                     <ListItemPrefix>
                         <PowerIcon className={`w-6`} />
                     </ListItemPrefix>

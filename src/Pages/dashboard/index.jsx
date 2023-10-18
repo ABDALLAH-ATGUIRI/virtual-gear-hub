@@ -21,7 +21,7 @@ const DashboardStructure = ({ children }) => {
     return (
         <div className="w-full h-screen">
             <Sidebar />
-            <div className="relative ml-20 p-6">
+            <div className="relative ml-20 pt-20 p-6">
                 <CurrentLocation />
                 {children}
             </div>

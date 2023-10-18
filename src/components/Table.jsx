@@ -15,15 +15,12 @@ function Table({ handleCreate, handleEdit, handleDelete, header, data, paginatio
     const nextPage = () => { if (pagination.currentPage < pagination.lastPage) setCurrentPage(pagination.currentPage + 1) }
 
     return (
-        <Card className="h-full w-full shadow-md rounded-md">
+        <Card className="h-full w-full shadow-md rounded-md overflow-x-auto">
             <CardHeader floated={false} shadow={false} className="rounded-none p-4">
                 <div>
                     <Typography variant="h5" color="blue-gray">
                         {title}
                     </Typography>
-                    {/* <Typography color="gray" className="mt-1 font-normal">
-                        These are details about the last transactions
-                    </Typography> */}
                 </div>
                 <div className="flex items-center justify-end">
                     <Button className="bg-green-500 flex items-center gap-1 py-2.5 pr-5 pl-3" onClick={() => handleCreate()}>
@@ -56,9 +53,9 @@ function Table({ handleCreate, handleEdit, handleDelete, header, data, paginatio
                             ({ image, name, category, description, price, created_at, }, index) => {
 
                                 return (
-                                    <tr key={name + 1}>
-                                        <td className="p-6 flex justify-center">
-                                            <Avatar src={`http://localhost:8000/storage/${image}`} alt={name} size="sm" className="h-20 w-28" />
+                                    <tr key={name + index}>
+                                        <td className="p-2 flex justify-center">
+                                            <Avatar src={`http://localhost:8000/storage/${image}`} alt={name} size="xl" className="max-h-24  h-full w-auto" />
                                         </td>
                                         <td className="p-4">
                                             <Typography
