@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import ErrorPage from "./components/404.jsx";
-import Auth from "./Pages/auth";
+import Auth from "./pages/auth";
 import App from "./App.jsx";
 
 import { Provider } from 'react-redux'
