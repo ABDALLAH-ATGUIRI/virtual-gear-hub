@@ -3,7 +3,10 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
   Cog6ToothIcon,
-  InboxIcon
+  InboxIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon
 } from "@heroicons/react/24/solid";
 
 export const SIDEBARMENUS = [
@@ -74,5 +77,33 @@ export const SIDEBARMENUS = [
     name: "Settings",
     icon: Cog6ToothIcon,
     link: "/settings"
+  }
+];
+
+export const PROFILEMENUITEMS = [
+  {
+    label: "My Profile",
+    icon: UserCircleIcon,
+    link: "/profile"
+  },
+  {
+    label: "Dashboard",
+    icon: Cog6ToothIcon,
+    link: "/dashboard"
+  },
+  {
+    label: "Inbox",
+    icon: InboxArrowDownIcon,
+    link: "/inbox"
+  },
+  {
+    label: "Help",
+    icon: LifebuoyIcon,
+    link: "/help"
+  },
+  {
+    label: "Sign Out",
+    icon: PowerIcon,
+    link: "/signout"
   }
 ];
