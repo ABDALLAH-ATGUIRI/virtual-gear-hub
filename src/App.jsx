@@ -3,7 +3,8 @@ import { RequireAuth } from "./features/auth/RequireAuth";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import Header from "./components/Header";
-import Home from "./pages/Home";
+import Home from "./pages/home";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,12 +27,13 @@ function App() {
 
 function AppStructure({ children }) {
   return (
-    <div className="relative w-full h-full duration-300 ease-in-out font-sans text-gray-900 ">
-      <div className=" w-full flex-col">
-        <div className="overscroll-auto relative">
+    <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-gray-900 ">
+        <div className="overscroll-auto relative flex flex-col">
           <Header />
-          {children}
-        </div>
+          <div className="relative min-h-screen w-full">
+            {children}
+          </div>
+          <Footer />
       </div>
     </div>
   );
