@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SIDEBARMENUS } from "../utils/menus";
+import { SIDEBARMENUS } from "../../utils/menus";
 import {
     Card,
     Typography,
@@ -12,12 +12,7 @@ import {
     AccordionBody,
 } from "@material-tailwind/react";
 
-import {
-    PowerIcon,
-    ChevronDownIcon
-} from "@heroicons/react/24/solid";
-
-import { Bars3BottomLeftIcon, Bars3BottomRightIcon } from "@heroicons/react/20/solid";
+import { PowerIcon, ChevronDownIcon, Bars3BottomLeftIcon, Bars3BottomRightIcon } from "@heroicons/react/24/solid";
 
 function Sidebar() {
     const [open, setOpen] = useState(0);

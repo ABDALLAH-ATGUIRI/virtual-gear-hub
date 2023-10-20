@@ -7,40 +7,43 @@ import {
     Typography,
     Button,
 } from "@material-tailwind/react";
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 export const CardProduct = ({ item }) => {
     const [colors, setColors] = useState({
         jus: 'text-yellow-500', salad: 'text-green-500', food: 'text-orange-500'
     })
     return (
-        <Card className="h-96 overflow-hidden">
+        <Card className="overflow-hidden rounded-md bg-blue-gray-700/10 shadow-md shadow-blue-gray-800/10">
             <CardHeader
                 floated={false}
                 shadow={false}
                 color="transparent"
-                className="m-0 rounded-none p-1 h-56"
+                className="m-0 h-full max-h-32 "
             >
                 <img
                     src={`http://localhost:8000/storage/${item.image}`}
                     alt="ui/ux review check "
-                    className="h-full mx-auto object-cover "
+                    className="h-full mx-auto object-cover"
                 />
             </CardHeader>
-            <CardBody className='h-full'>
-                <Typography variant="h4" color="blue-gray">
+            <CardBody className='flex flex-col items-center h-full'>
+                <Typography variant="h5" className='text-blue-gray-100/40 text-center'>
                     {item.name}
-                    {/* <span className={`${colors[item.category.name.toLowerCase()]} font-semibold`}>#{item.category.name}</span> */}
                 </Typography>
                 <Typography variant="lead" color="gray" className="mt-3 font-normal text-md">
-                    {item.description}
+                    {item.category.name}
                 </Typography>
             </CardBody>
-            <CardFooter className="pt-0 flex justify-between items-center">
-                <Typography variant="h5" color="blue-gray">
-                    {item.price} DH
+            <CardFooter className="pt-0 flex flex-col items-center gap-2">
+                <Typography variant="h5" class="text-secondary font-extrabold text-xl">
+                    {item.price} $
                 </Typography>
-                <Button className='bg-green-400 px-2 rounded-md'>Order Now</Button>
+                <Button variant="text" className="flex items-center gap-2 text-blue-gray-100">
+                    <PlusCircleIcon class="h-8 w-8 text-secondary" />
+                    Order Now
+                </Button>
             </CardFooter>
-        </Card>
+        </Card >
     );
 }

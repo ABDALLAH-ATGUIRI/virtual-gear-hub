@@ -1,5 +1,4 @@
 import { Typography } from "@material-tailwind/react"
-import { Link } from "react-router-dom";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -8,14 +7,14 @@ const Footer = () => {
             <Typography
                 as="a"
                 variant="h5"
-                color="White"
+                color="white"
                 className="mr-4 cursor-pointer py-1.5 text-white font-extrabold flex flex-col items-center"
             >
                 <span>ARENA</span> <span className="text-deep-purple-600">GAME</span>
             </Typography>
             <Typography
-                variant="medumeric"
-                className="text-center text-blue-gray-100  md:mb-0"
+                variant="paragraph"
+                className="text-center text-gray-600  md:mb-0"
             >
                 All rights reserved  {currentYear}  &copy;
             </Typography>
