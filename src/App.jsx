@@ -2,9 +2,9 @@ import { Fragment, Suspense } from "react";
 import { RequireAuth } from "./features/auth/RequireAuth";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
-import Header from "./components/Header";
+import Header from "./components/global/Header";
+import Footer from "./components/global/Footer";
 import Home from "./pages/home";
-import Footer from "./components/Footer";
 
 function App() {
   return (
