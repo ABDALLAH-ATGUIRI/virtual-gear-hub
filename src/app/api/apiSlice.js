@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logOut } from "../../features/auth/authSlice";
+import { setCredentials, setLogout } from "../../features/auth/authSlice";
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
@@ -29,7 +29,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       // retry the original query with the new token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logOut());
+      api.dispatch(setLogout());
     }
   }
 
