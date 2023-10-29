@@ -34,9 +34,9 @@ export const productApiSlice = apiSlice.injectEndpoints({
         params: { ...credentials }
       })
     }),
-    fetchProductsByUser: builder.mutation({
+    fetchMyProducts: builder.mutation({
       query: (credentials) => ({
-        url: "/products/user-products",
+        url: "/products/my-products",
         method: "GET",
         withCredentials: true,
         params: { ...credentials }
@@ -50,5 +50,5 @@ export const {
   useUpdateProductMutation,
   useCreateProductMutation,
   useDeleteProductMutation,
-  useFetchProductsByUserMutation
+  useFetchMyProductsMutation
 } = productApiSlice;
