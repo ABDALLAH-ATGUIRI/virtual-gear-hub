@@ -1,64 +1,55 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux";
+import store from "../../../app/store";
 import Table from "../../../components/Table";
-import { useProductContext } from "../../../context/Product";
-import DialogDefault from "../../../components/DialogDefault";
+import { openModel } from "../../../features/modelSlice";
+import { useFetchMyProductsMutation } from "../../../features/products/productApiSlice";
+import { selectCurrentPagination, selectCurrentProducts, setProductsCredentials } from "../../../features/products/productSlice";
+import { CreateEdit } from "./components/CreateEdit";
 
-const INITFORM = {
-    name: "",
-    category_id: "",
-    price: "",
-    description: "",
-    image: "",
-}
-
-const TABLE_HEAD = ["", "Nfame", "Description", "Price", "Category", "Created at", "Actions"];
+const TABLE_HEAD = ["", "Name", "Description", "Price", "Category", "Created at", "Actions"];
 
 const Products = () => {
-    const { products, fetchMyProducts, deleteProduct, addProduct, updateProduct } = useProductContext();
-    const [showDialog, setShowDialog] = useState(false)
-    const [form, setForm] = useState(INITFORM)
+    const [fetch] = useFetchMyProductsMutation();
+    const products = useSelector(selectCurrentProducts);
+    const pagination = useSelector(selectCurrentPagination);
 
-    const handleCreate = () => {
-        setForm(INITFORM)
-        handleShow()
-    }
+    const [product, setProduct] = useState()
 
-    const handleEdit = (newForm) => {
-        setForm(
-            {
-                id: newForm.id,
-                name: newForm.name,
-                category_id: newForm.category_id,
-                price: newForm.price,
-                description: newForm.description,
-            })
-        handleShow()
-    }
+    const [currentPage, setCurrentPage] = useState(pagination || 1)
 
-    const handle = () => {
-        if (form?.id) {
-            updateProduct(form)
-        } else {
-            addProduct(form)
+    const handle = (info) => {
+        switch (info?.type) {
+            case "create":
+                setProduct({})
+                store.dispatch(openModel())
+                break
+            case "update":
+                setProduct(info?.data)
+                store.dispatch(openModel())
+                break
+            case "delete":
+                break
+            default: return
         }
-        setForm(INITFORM)
-        handleClose()
     }
 
+    useEffect(() => {
+        new Promise((resolve, reject) => {
+            store.dispatch(fetch).unwrap().then((result) => {
+                store.dispatch(setProductsCredentials(result))
+                resolve(result)
+            }).catch((err) => {
+                reject(err)
+            });
+        })
+    }, [store.dispatch])
 
-    const handleDelete = (id) => {
-        deleteProduct(id)
-    }
-
-    const handleClose = () => setShowDialog(false)
-    const handleShow = () => setShowDialog(true)
-
-    useEffect(() => { fetchMyProducts() }, [])
     return (
-        <div >
-            <Table handleCreate={() => handleCreate()} title='Table Of Products' header={TABLE_HEAD} data={products?.products} />
-            <DialogDefault title={"Create New Product"} />
-        </div >
+        <>
+            <Table handle={handle} title='Our Products' header={TABLE_HEAD} data={products} pagination={pagination} setCurrentPage={setCurrentPage} />
+            <CreateEdit product={product} />
+        </>
     )
 }
 
