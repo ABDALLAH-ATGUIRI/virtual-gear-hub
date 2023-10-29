@@ -36,11 +36,11 @@ export const CardProduct = ({ item }) => {
                 </Typography>
             </CardBody>
             <CardFooter className="pt-0 flex flex-col items-center gap-2">
-                <Typography variant="h5" class="text-secondary font-extrabold text-xl">
+                <Typography variant="h5" className="text-secondary font-extrabold text-xl">
                     {item.price} $
                 </Typography>
                 <Button variant="text" className="flex items-center gap-2 text-blue-gray-100">
-                    <PlusCircleIcon class="h-8 w-8 text-secondary" />
+                    <PlusCircleIcon className="h-8 w-8 text-secondary" />
                     Order Now
                 </Button>
             </CardFooter>

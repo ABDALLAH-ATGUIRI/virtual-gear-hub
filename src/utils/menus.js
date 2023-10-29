@@ -6,7 +6,6 @@ import {
   InboxIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
-  PowerIcon
 } from "@heroicons/react/24/solid";
 
 export const SIDEBARMENUS = [
@@ -101,9 +100,4 @@ export const PROFILEMENUITEMS = [
     icon: LifebuoyIcon,
     link: "/help"
   },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-    link: "/signout"
-  }
 ];

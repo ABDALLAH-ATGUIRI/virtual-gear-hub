@@ -22,7 +22,7 @@ import {
 const MENUS = [
     {
         label: "Home",
-        link: "home",
+        link: "/home",
     },
     {
         label: "Payment",
@@ -57,7 +57,7 @@ const ProfileMenu = () => {
             const result = await logout().unwrap()
             if (result.success === true) {
                 dispatch(setLogout())
-                navigator('/')
+                navigator('/home')
             }
         } catch (error) {
             console.log(error);
