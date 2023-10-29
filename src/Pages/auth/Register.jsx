@@ -29,7 +29,7 @@ const RegistrationForm = () => {
             setMessage({ message: 'Successfully logged in', type: 'success' })
             setTimeout(() => {
                 setUserInfo(INITFORM)
-                navigate('/')
+                navigate('/home')
                 setMessage('')
             }, 2000)
         } catch (error) {

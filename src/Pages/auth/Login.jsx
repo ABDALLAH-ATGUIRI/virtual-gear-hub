@@ -43,7 +43,7 @@ const Login = () => {
             setTimeout(() => {
                 setUser('')
                 setPwd('')
-                navigate('/')
+                navigate('/home')
                 setMessage('')
             }, 2000)
         } catch (error) {
