@@ -6,29 +6,29 @@ import {
     DialogFooter,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModel } from "../features/modelSlice";
+import { closeDialog } from "../features/dialogsReducer";
 
-function DialogDefault({ title, handle, children }) {
+function DialogDefault({ title, handle, children, dialogId, className }) {
+    const { isOpen } = useSelector((store) => store.dialogs[dialogId] || false)
     const dispatch = useDispatch()
-    const { isOpen } = useSelector((store) => store.model)
 
     return (
-        <Dialog open={isOpen} handler={() => dispatch(closeModel())} className="w-1/2 min-w-[500px]">
+        <Dialog open={isOpen || false} handler={() => dispatch(closeDialog(dialogId))} className={className}>
             <DialogHeader>{title}</DialogHeader>
             <DialogBody divider>
                 {children}
             </DialogBody>
             <DialogFooter>
                 <Button
-                    variant="text"
+                    variant="outlined"
                     color="red"
-                    onClick={() => dispatch(closeModel())}
+                    onClick={() => dispatch(closeDialog(dialogId))}
                     className="mr-1"
                 >
-                    <span>Cancel</span>
+                    Cancel
                 </Button>
-                <Button variant="gradient" color="green" onClick={() => handle()}>
-                    <span>Confirm</span>
+                <Button variant="outlined" color="green" onClick={() => handle()}>
+                    Confirm
                 </Button>
             </DialogFooter>
         </Dialog>
