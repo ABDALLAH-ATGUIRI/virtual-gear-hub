@@ -9,37 +9,37 @@ import {
     CardHeader,
 } from "@material-tailwind/react";
 
-function Table({ handleCreate, handleEdit, handleDelete, header, data, pagination, title, setCurrentPage }) {
+function Table({ handle, header, data, pagination, title, setCurrentPage }) {
 
     const prePage = () => { if (pagination.currentPage > 1) setCurrentPage(pagination.currentPage - 1) }
     const nextPage = () => { if (pagination.currentPage < pagination.lastPage) setCurrentPage(pagination.currentPage + 1) }
 
     return (
-        <Card className="h-full w-full shadow-md rounded-md overflow-x-auto">
-            <CardHeader floated={false} shadow={false} className="rounded-none p-4">
+        <Card className="h-full shadow-md overflow-x-auto  bg-white-700/10">
+            <CardHeader floated={false} shadow={false} className="rounded-none bg-transparent p-4">
                 <div>
-                    <Typography variant="h5" color="blue-gray">
+                    <Typography variant="h5" color="white">
                         {title}
                     </Typography>
                 </div>
-                <div className="flex items-center justify-end">
-                    <Button className="bg-green-500 flex items-center gap-1 py-2.5 pr-5 pl-3" onClick={() => handleCreate()}>
+                <div className="flex item-center justify-end">
+                    <Button className="bg-green-500 flex item-center gap-1 py-2.5 pr-5 pl-3" onClick={() => handle({ type: 'create' })}>
                         <PlusSmallIcon className="h-6 w-6" />Create
                     </Button>
                 </div>
             </CardHeader>
             <CardBody className="px-0">
                 <table className="mt-4 w-full min-w-max table-auto text-left">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+                    <thead className="text-xs text-white uppercase">
                         <tr>
                             {header.map((head) => (
                                 <th
                                     key={head}
-                                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 font-bold"
+                                    className="border-y p-4 font-bold"
                                 >
                                     <Typography
                                         variant="small"
-                                        color="blue-gray"
+                                        color="white"
                                         className="font-bold leading-none opacity-70"
                                     >
                                         {head}
@@ -48,70 +48,69 @@ function Table({ handleCreate, handleEdit, handleDelete, header, data, paginatio
                             ))}
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         {data?.length > 0 ? data.map(
-                            ({ image, name, category, description, price, created_at, }, index) => {
-
+                            (item, index) => {
                                 return (
-                                    <tr key={name + index}>
-                                        <td className="p-2 flex justify-center">
-                                            <Avatar src={`http://localhost:8000/storage/${image}`} alt={name} size="xl" className="max-h-24  h-full w-auto" />
+                                    <tr key={name + index} className={index % 2 ? 'bg-gray-100/20' : ''}>
+                                        <td className="p-4 flex justify-center">
+                                            <Avatar src={`http://localhost:8000/storage/${item.image}`} alt={name} size="xl" className="max-h-24  h-full w-auto" />
                                         </td>
                                         <td className="p-4">
                                             <Typography
                                                 variant="small"
-                                                color="blue-gray"
+                                                color="white"
                                                 className="font-normal"
                                             >
-                                                {name}
+                                                {item.name}
                                             </Typography>
                                         </td>
 
-                                        <td className={`p-4 bg-gray-100/50`}>
+                                        <td className={`p-4`}>
                                             <Typography
                                                 variant="small"
-                                                color="blue-gray"
+                                                color="white"
                                                 className="font-normal"
                                             >
-                                                {description}
-                                            </Typography>
-                                        </td>
-
-                                        <td className="p-4">
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal"
-                                            >
-                                                {category.name}
-                                            </Typography>
-                                        </td>
-
-                                        <td className={`p-4 bg-gray-100/50`}>
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal"
-                                            >
-                                                {price}
+                                                {item.description}
                                             </Typography>
                                         </td>
 
                                         <td className="p-4">
                                             <Typography
                                                 variant="small"
-                                                color="blue-gray"
+                                                color="white"
                                                 className="font-normal"
                                             >
-                                                {new Date(created_at).toLocaleDateString()}
+                                                {item.category.name}
                                             </Typography>
                                         </td>
-                                        <td className={`py-8 w-32 bg-gray-100/50`}>
-                                            <Button variant="text" onClick={() => handleEdit()}>
+
+                                        <td className={`p-4`}>
+                                            <Typography
+                                                variant="small"
+                                                color="white"
+                                                className="font-normal"
+                                            >
+                                                {item.price}
+                                            </Typography>
+                                        </td>
+
+                                        <td className="p-4">
+                                            <Typography
+                                                variant="small"
+                                                color="white"
+                                                className="font-normal"
+                                            >
+                                                {new Date(item.created_at).toLocaleDateString()}
+                                            </Typography>
+                                        </td>
+                                        <td className={`py-4 w-32`}>
+                                            <Button variant="text" onClick={() => handle({ type: 'update', data: item })}>
                                                 <PencilIcon className="h-5 w-5 mx-5 text-blue-600" />
                                             </Button>
 
-                                            <Button variant="text" onClick={() => handleDelete()}>
+                                            <Button variant="text" onClick={() => handle({ type: 'update', id: item.id })}>
                                                 <TrashIcon className="h-5 w-5 mx-5 text-red-600" />
                                             </Button>
                                         </td>
@@ -127,8 +126,8 @@ function Table({ handleCreate, handleEdit, handleDelete, header, data, paginatio
                     </tbody>
                 </table>
             </CardBody>
-            <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-                <Typography variant="small" color="blue-gray" className="font-normal">
+            <CardFooter className="flex item-center justify-between border-t border-white-50 p-4">
+                <Typography variant="small" color="white" className="font-normal">
                     Page {pagination.currentPage} of {pagination.lastPage}
                 </Typography>
                 <div className="flex gap-2">
