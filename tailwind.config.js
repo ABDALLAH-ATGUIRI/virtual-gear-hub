@@ -13,9 +13,9 @@ export default withMT({
   theme: {
     extend: {
       colors: {
-        primary: "#fb923c",
-        secondary: "#dfd9ff",
-        tertiary: "#151030",
+        primary: "#9c27b0",
+        secondary: "#3f51b5",
+        tertiary: "#bd2fd6",
         "black-100": "#100d25",
         "black-200": "#090325",
         "white-100": "#f3f3f3"
@@ -27,9 +27,10 @@ export default withMT({
         xs: "450px"
       },
       backgroundImage: {
-        "hero-bg": "url('../src/assets/images/bg-hero.webp')"
+        "hero-bg-1": "url('../src/assets/images/blog_hero_bg_1.webp')",
+        "hero-bg-2": "url('../src/assets/images/blog_hero_bg_2.webp')",
       }
     }
   },
-  plugins: ["tailwindcss ,autoprefixer"]
+plugins: ["tailwindcss ,autoprefixer"],
 });

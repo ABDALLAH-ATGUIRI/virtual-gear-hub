@@ -25,7 +25,7 @@ function Sidebar() {
 
     useEffect(() => { if (openSidebar === true) setOpen(0) }, [openSidebar])
     return (
-        <Card className={`!h-full fixed z-30 px-1 shadow-xl shadow-blue-gray-900/5 mt-16 rounded-none bg-primary/80 ${openSidebar ? '!w-20' : '!w-64'}`}>
+        <Card className={`!h-full fixed z-30 px-1 shadow-xl shadow-blue-gray-900/5 mt-16 rounded-none bg-secondary ${openSidebar ? '!w-20' : '!w-64'}`}>
             <List>
                 <ListItem className={`flex mt-4 ${openSidebar ? 'w-14' : ''}`}>
                     <ListItemPrefix className={`!flex flex-1 !items-end !justify-end`} onClick={() => setOpenSidebar(!openSidebar)}>
@@ -73,9 +73,9 @@ function Sidebar() {
                             return <ListItem key={`parent-${i}`} className={`hover:bg-none ${openSidebar ? '!w-16' : ''}`}>
                                 <Link to={item.link} className="flex gap-3">
                                     <ListItemPrefix>
-                                        <item.icon color="gray-blue" className={`w-6`} />
+                                        <item.icon color="white" className={`w-6`} />
                                     </ListItemPrefix>
-                                    <ListItemPrefix className={`text-gray-blue-50 ${!openSidebar ? 'flex' : 'hidden'}`}>
+                                    <ListItemPrefix className={`text-white ${!openSidebar ? 'flex' : 'hidden'}`}>
                                         {item.name}
                                     </ListItemPrefix>
                                 </Link>
