@@ -1,58 +1,69 @@
-import { Fragment, Suspense, useEffect } from "react";
+import { Fragment, Suspense, useEffect, useState } from "react";
 import { RequireAuth } from "./features/auth/RequireAuth";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useRefreshTokenMutation } from "./features/auth/authApiSlice";
 import { setCredentials } from "./features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import Dashboard from "./pages/dashboard";
+import ProcurementPanel from "./pages/user/ProcurementPanel";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
 import Home from "./pages/home";
+import Cookies from "js-cookie";
+import ErrorPage from "./pages/404";
 
 function App() {
   return (
     <Fragment>
-      <Suspense fallback={<div>Loading...</div>}>
-        <AppStructure>
-          <Routes>
-            <Route path="/" element={<Outlet />}>
-              <Route path="/" element={<Home />} />
-              <Route element={<RequireAuth />} >
-                <Route path="/dashboard/*" element={<Dashboard />} />
-              </Route>
+      <AppStructure>
+        <Routes>
+          <Route path="/" element={<Outlet />}>
+            <Route path="/" element={<Navigate replace to="home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route element={<RequireAuth />} >
+              <Route path="/dashboard/*" element={<Dashboard />} />
+              <Route path="/dashboard/panel-product" element={<ProcurementPanel />} />
             </Route>
-          </Routes>
-        </AppStructure>
-      </Suspense>
+            <Route path="*" element={< ErrorPage />} />
+          </Route>
+        </Routes>
+      </AppStructure>
     </Fragment>
   );
 }
 
-function AppStructure({ children }) {
-  const [refreshToken, { isLoading }] = useRefreshTokenMutation()
+export function AppStructure({ children }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [refreshToken] = useRefreshTokenMutation()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    new Promise((resolve, reject) => {
-      dispatch(refreshToken).unwrap().then((result) => {
-        dispatch(setCredentials({ ...result }))
-        resolve(result)
-      }).catch((err) => {
-        reject(err)
-      });
-    })
+    if (Cookies.get("token"))
+      new Promise((resolve, reject) => {
+        dispatch(refreshToken).unwrap().then((result) => {
+          dispatch(setCredentials({ ...result }))
+          setIsLoading(false)
+          resolve(result)
+        }).catch((err) => {
+          reject(err)
+          setIsLoading(false)
+        });
+      })
   }, [dispatch])
 
   return (
-    <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-gray-900 ">
-      <div className="overscroll-auto relative flex flex-col">
-        <Header />
-        <div className="relative min-h-screen w-full">
-          {children}
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-gray-900 ">
+        <div className="overscroll-auto relative flex flex-col">
+          <Header />
+          <div className="relative min-h-screen w-full">
+            {children}
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
-    </div>
+    </Suspense>
+
   );
 }
 
