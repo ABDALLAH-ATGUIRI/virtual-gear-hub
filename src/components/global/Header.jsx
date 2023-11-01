@@ -3,45 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { selectCurrentUser, setLogout } from '../../features/auth/authSlice';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
-import { PROFILEMENUITEMS } from '../../utils/menus'
-import { PowerIcon } from "@heroicons/react/24/solid";
-import {
-    Navbar,
-    Typography,
-    Button,
-    Menu,
-    MenuHandler,
-    Avatar,
-    MenuList,
-    MenuItem,
-    Tabs,
-    TabsHeader,
-    Tab,
-} from "@material-tailwind/react";
+import { openDialog } from '../../features/dialogsReducer';
 
-const MENUS = [
-    {
-        label: "Home",
-        link: "/home",
-    },
-    {
-        label: "Payment",
-        link: "payment",
-    },
-    {
-        label: "Delivery",
-        link: "delivery",
-    },
-    {
-        label: "Catalogue",
-        link: "catalogue",
-    },
-    {
-        label: "About us",
-        link: "about-us",
-    },
-];
-
+import { PROFILEMENUITEMS, NAVMENUS } from '../../utils/menus'
+import { ShoppingBagIcon, BellIcon, PowerIcon } from '@heroicons/react/24/outline';
+import { Navbar, Typography, Button, Menu, MenuHandler, Avatar, MenuList, MenuItem, Tabs, TabsHeader, Tab, Badge } from "@material-tailwind/react";
 const ProfileMenu = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +41,7 @@ const ProfileMenu = () => {
                         variant="circular"
                         size="sm"
                         alt="tania andrew"
-                        className="border-0 p-0.5 w-12 h-11 rounded-full"
+                        className="border-0 p-0.5 w-11 h-11 rounded-full"
                         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
                     />
 
@@ -138,25 +104,27 @@ const ProfileMenu = () => {
 }
 
 function NavList() {
-    const [activeTab, setActiveTab] = useState("html");
+    const [activeTab, setActiveTab] = useState("Home");
 
     return (
         <Tabs value={activeTab}>
             <TabsHeader
-                className="rounded-none bg-transparent p-0 flex gap-4"
+                className="rounded-none bg-transparent p-0 flex gap-6"
                 indicatorProps={{
                     className: "bg-transparent border-b-2 border-tertiary shadow-none rounded-none",
                 }}
             >
-                {MENUS.map(({ label, link }) => (
-                    <Tab
-                        key={link}
-                        value={link}
-                        onClick={() => setActiveTab(link)}
-                        className={`w-auto text-sm font-medium pb-2 ${activeTab === link ? "text-tertiary" : "text-gray-200"}`}
-                    >
-                        <Link to={link}>{label}</Link>
-                    </Tab>
+                {NAVMENUS.map(({ label, link }) => (
+                    <Link key={label} to={link}>
+                        <Tab
+
+                            value={label}
+                            onClick={() => setActiveTab(label)}
+                            className={`w-auto text-[14px] font-bold pb-2 ${activeTab === label ? "text-tertiary" : "text-gray-200"}`}
+                        >
+                            {label}
+                        </Tab>
+                    </Link>
                 ))}
             </TabsHeader>
         </Tabs>
@@ -164,10 +132,11 @@ function NavList() {
 }
 
 export function Header() {
-    const user = useSelector(selectCurrentUser)
+    const user = useSelector(selectCurrentUser);
+    const dispatch = useDispatch();
 
     return (
-        <Navbar className="!max-w-full px-12 py-1 mx-auto rounded-none border-0 !w-full bg-prmary fixed z-40">
+        <Navbar className="!max-w-full px-12 py-1 mx-auto rounded-none border-0 !w-full bg-black/50 fixed z-40">
             <div className="flex items-center justify-between text-white w-full">
                 <Typography
                     as="a"
@@ -177,29 +146,36 @@ export function Header() {
                 >
                     <span>ARENA</span> <span className="text-deep-purple-600">GAME</span>
                 </Typography>
-                {/* <div className="block items-center gap-2 lg:hidden">
-                    <MobileMenu />
-                </div> */}
-                <NavList />
-                <div className="flex gap-2">
+                <div className="w-2/3 flex items-center justify-between">
+                    <NavList />
                     {
                         user ?
-                            <ProfileMenu /> :
-                            <>
+                            <div className='flex items-center gap-4'>
+                                <ProfileMenu />
+                                <Badge color="purple" withBorder content="2" className='text-xs p-0 font-bold'>
+                                    <BellIcon className="h-7 cursor-pointer" />
+                                </Badge>
+                                <Badge color="purple" withBorder content="5" className='text-xs p-0 font-bold'>
+                                    <ShoppingBagIcon className="h-7 cursor-pointer" onClick={() => dispatch(openDialog('shopping-panel'))} />
+                                </Badge>
+                            </div>
+                            :
+                            <div>
                                 <Link to='auth/login'>
                                     <Button variant="text" size="sm" color="white">
                                         Sign In
                                     </Button>
                                 </Link>
-
-                                <Button variant="gradient" size="sm">
-                                    Sign Up
-                                </Button>
-                            </>
+                                <Link to='auth/login'>
+                                    <Button variant="gradient" size="sm">
+                                        Sign Up
+                                    </Button>
+                                </Link>
+                            </div>
                     }
                 </div>
             </div>
-        </Navbar>
+        </Navbar >
     );
 }
 

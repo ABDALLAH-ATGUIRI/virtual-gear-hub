@@ -5,7 +5,7 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   InboxArrowDownIcon,
-  LifebuoyIcon,
+  LifebuoyIcon
 } from "@heroicons/react/24/solid";
 
 export const SIDEBARMENUS = [
@@ -99,5 +99,28 @@ export const PROFILEMENUITEMS = [
     label: "Help",
     icon: LifebuoyIcon,
     link: "/help"
+  }
+];
+
+export const NAVMENUS = [
+  {
+    label: "Home",
+    link: "/home"
   },
+  {
+    label: "Payment",
+    link: "payment"
+  },
+  {
+    label: "Delivery",
+    link: "delivery"
+  },
+  {
+    label: "Catalogue",
+    link: "catalogue"
+  },
+  {
+    label: "About us",
+    link: "about-us"
+  }
 ];
