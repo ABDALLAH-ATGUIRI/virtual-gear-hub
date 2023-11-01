@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux";
-import store from "../../../app/store";
+import { useDispatch, useSelector } from "react-redux";
 import Table from "../../../components/Table";
-import { openModel } from "../../../features/modelSlice";
+import { openDialog } from "../../../features/dialogsReducer";
 import { useFetchMyProductsMutation } from "../../../features/products/productApiSlice";
 import { selectCurrentPagination, selectCurrentProducts, setProductsCredentials } from "../../../features/products/productSlice";
 import { CreateEdit } from "./components/CreateEdit";
@@ -10,6 +9,7 @@ import { CreateEdit } from "./components/CreateEdit";
 const TABLE_HEAD = ["", "Name", "Description", "Price", "Category", "Created at", "Actions"];
 
 const Products = () => {
+    const dispatch = useDispatch()
     const [fetch] = useFetchMyProductsMutation();
     const products = useSelector(selectCurrentProducts);
     const pagination = useSelector(selectCurrentPagination);
@@ -22,11 +22,11 @@ const Products = () => {
         switch (info?.type) {
             case "create":
                 setProduct({})
-                store.dispatch(openModel())
+                dispatch(openDialog('create-edit-product'))
                 break
             case "update":
                 setProduct(info?.data)
-                store.dispatch(openModel())
+                dispatch(openDialog('create-edit-product'))
                 break
             case "delete":
                 break
@@ -36,14 +36,14 @@ const Products = () => {
 
     useEffect(() => {
         new Promise((resolve, reject) => {
-            store.dispatch(fetch).unwrap().then((result) => {
-                store.dispatch(setProductsCredentials(result))
+            dispatch(fetch).unwrap().then((result) => {
+                dispatch(setProductsCredentials(result))
                 resolve(result)
             }).catch((err) => {
                 reject(err)
             });
         })
-    }, [store.dispatch])
+    }, [dispatch])
 
     return (
         <>

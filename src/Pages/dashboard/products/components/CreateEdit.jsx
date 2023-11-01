@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import store from '../../../../app/store'
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Input, Option, Select, Textarea } from '@material-tailwind/react'
 import DialogDefault from '../../../../components/DialogDefault'
 
-import { useUpdateProductMutation } from '../../../../features/products/productApiSlice'
 import { useFetchCategoriesMutation } from '../../../../features/categories/categoryApiSlice'
 import { selectCurrentCategories, setCategoriesCredentials } from '../../../../features/categories/categorySlice'
-import { createProduct } from '../../../../features/products/productSlice'
+import { useCreateProductMutation, useUpdateProductMutation } from '../../../../features/products/productApiSlice'
 
 const DEFAULTFORM = {
     name: "",
@@ -19,23 +17,24 @@ const DEFAULTFORM = {
 
 export const CreateEdit = (values) => {
     const [form, setForm] = useState({})
-    const [update] = useUpdateProductMutation()
+    const dispatch = useDispatch();
     const [fetchCategories] = useFetchCategoriesMutation();
+    const [create] = useCreateProductMutation()
+    const [update] = useUpdateProductMutation()
     const categories = useSelector(selectCurrentCategories)
 
-    const handle = () => {
-        if (!form?.id) {
-            return new Promise((resolve, reject) => store.dispatch(createProduct(form)).unwrap().then((result) => {
-                resolve(result)
-                setForm(DEFAULTFORM)
-            }).catch((err) => reject(err)))
+
+    const handle = useCallback(async () => {
+        if (!form.id) {
+            new Promise((resolve, reject) => {
+                create(form).unwrap().then((response) => resolve(response)).catch((error) => reject(error))
+            })
         } else {
-            return new Promise((resolve, reject) => store.dispatch(update(form)).unwrap().then((result) => {
-                resolve(result)
-                setForm(DEFAULTFORM)
-            }).catch((err) => reject(err)))
+            new Promise((resolve, reject) => {
+                update(form).unwrap().then((response) => resolve(response)).catch((error) => reject(error))
+            })
         }
-    }
+    }, [create, form]);
 
     const uploadImage = (e) => {
         e.preventDefault();
@@ -52,14 +51,14 @@ export const CreateEdit = (values) => {
 
     useEffect(() => {
         new Promise((resolve, reject) => {
-            store.dispatch(fetchCategories).unwrap().then((result) => {
+            dispatch(fetchCategories).unwrap().then((result) => {
                 if (result.total !== 0) {
-                    store.dispatch(setCategoriesCredentials(result))
+                    dispatch(setCategoriesCredentials(result))
                 }
                 resolve(result)
             }).catch((err) => reject(err));
         })
-    }, [store.dispatch])
+    }, [dispatch])
 
     useEffect(() => {
         if (values?.product?.id) {
@@ -70,7 +69,7 @@ export const CreateEdit = (values) => {
     }, [values])
 
     return (
-        <DialogDefault title={"Create New Product"} handle={() => handle()} >
+        <DialogDefault title={"Create New Product"} dialogId={'create-edit-product'} handle={handle} >
             <form className="p-6 flex flex-col gap-8" encType="multipart/form-data">
                 <div className="mb-4 flex flex-col lg:flex-row gap-6 ">
                     <Input
