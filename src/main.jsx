@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import ErrorPage from "./components/404.jsx";
 import Auth from "./pages/auth";
 import App from "./App.jsx";
 
@@ -19,7 +18,6 @@ root.render(
         <Routes>
           <Route path="/*" element={<App />} />
           <Route path='/auth/*' element={<Auth />} />
-          {/* <Route path="/*" element={<ErrorPage />} /> */}
         </Routes>
       </Router>
     </Provider>
