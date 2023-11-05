@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Auth from "./pages/auth";
 import App from "./App.jsx";
 
 import { Provider } from 'react-redux'
@@ -17,7 +16,6 @@ root.render(
       <Router>
         <Routes>
           <Route path="/*" element={<App />} />
-          <Route path='/auth/*' element={<Auth />} />
         </Routes>
       </Router>
     </Provider>

@@ -1,15 +1,11 @@
-import {
-    Card,
-    Input,
-    Button,
-    Typography,
-    Alert,
-} from "@material-tailwind/react";
+import { Input, Button, Typography, Alert, } from "@material-tailwind/react";
 import { useState, useRef, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useLoginMutation } from "../../features/auth/authApiSlice";
+import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
+import { useLoginMutation } from "../../features/auth/authApiSlice";
 import { setCredentials } from "../../features/auth/authSlice";
+import DialogDefault from "../../components/DialogDefault";
+import { closeDialog } from "../../features/dialogsReducer";
 
 const Login = () => {
 
@@ -41,11 +37,12 @@ const Login = () => {
             dispatch(setCredentials({ ...userData }))
             setMessage({ message: 'Successfully logged in', type: 'success' })
             setTimeout(() => {
+                dispatch(closeDialog('login-user'))
                 setUser('')
                 setPwd('')
                 navigate('/home')
                 setMessage('')
-            }, 2000)
+            }, 1000)
         } catch (error) {
             if (!error?.response) {
                 setMessage({ message: 'No Server Response', type: 'error' })
@@ -59,7 +56,7 @@ const Login = () => {
             errRef.current?.focus()
             setTimeout(() => {
                 setMessage('')
-            }, 2000)
+            }, 1000)
         }
     }
 
@@ -67,41 +64,32 @@ const Login = () => {
     const handlePwdInput = (e) => setPwd(e.target.value)
 
     return (
-        <Card color="transparent" shadow={false} className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <Typography variant="h4" color="blue-gray" className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Sign in to your account
-            </Typography>
-            <form className="py-6 flex flex-col gap-10" action="#" onSubmit={(e) => handleSubmit(e)}>
-                <Input type='email' value={user} color="orange" variant="outlined" size="lg" label="Email" placeholder="AbdallahAtguiri@gmail.com" onChange={(e) => { handleUserInput(e) }} required />
-                <Input type="password" value={pwd} color="orange" variant="outlined" size="lg" label="Password" placeholder="................" onChange={(e) => { handlePwdInput(e) }} required />
-                <Button
-                    fullWidth
-                    type="submit"
-                    className="w-full mt-8 text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-md text-sm px-5 py-2.5 text-center"
-                >
-                    Sign In
-                </Button>
-            </form>
-            {
-                message.message ?
-                    <Alert ref={errRef} className={`rounded-none border-l-4 font-medium ${message.type === 'error' ? 'border-red-500 text-red-500 bg-red-500/10 ' : 'border-green-500 text-green-500 bg-green-500/10 '}`}>
-                        {isLoading ? 'loading...' : message.message}
-                    </Alert> : <></>
-            }
-            <div className="mt-4 text-center font-normal">
-                <Typography color="gray" >
-                    Don’t have an account yet ?{" "}
-                    <Link to="/auth/register" className="font-medium text-primary hover:underline "> Sign up</Link>
-                </Typography>
-                <Typography color="gray">
-                    Go to home{" "}
-                    <Link to="/" className="font-medium text-primary hover:underline ">
-                        home <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                </Typography>
-            </div>
+        <DialogDefault title={"Create your account"} dialogId={'login-user'} >
+            {{
+                body:
+                    <form className="py-6 flex flex-col gap-10" action="#" onSubmit={(e) => handleSubmit(e)}>
+                        <Input type='email' value={user} color="deep-purple" variant="outlined" size="lg" label="Email" onChange={(e) => { handleUserInput(e) }} required />
+                        <Input type="password" value={pwd} color="deep-purple" variant="outlined" size="lg" label="Password" onChange={(e) => { handlePwdInput(e) }} required />
+                        <Button type="submit" color="deep-purple" fullWidth>Sign In</Button>
+                    </form>,
+                footer:
+                    <>
+                        {
+                            message.message ?
+                                <Alert ref={errRef} className={`rounded-none border-l-4 font-medium ${message.type === 'error' ? 'border-red-500 text-red-500 bg-red-500/10 ' : 'border-green-500 text-green-500 bg-green-500/10 '}`}>
+                                    {isLoading ? 'loading...' : message.message}
+                                </Alert> :
+                                <></>
+                        }
+                        <div className="w-full px-2 flex justify-between text-center font-normal">
+                            <Typography color="gray" > Don’t have an account yet ?{" "}<span className="font-medium text-primary hover:underline "> Sign up</span></Typography>
+                            <Typography color="gray">Go to home{" "} <span className="font-medium text-primary hover:underline ">home <span aria-hidden="true">&rarr;</span></span></Typography>
+                        </div>
+                    </>
+            }}
+        </DialogDefault>
 
-        </Card>
+
     )
 }
 

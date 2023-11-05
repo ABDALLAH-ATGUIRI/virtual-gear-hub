@@ -11,6 +11,7 @@ import Footer from "./components/global/Footer";
 import Home from "./pages/home";
 import Cookies from "js-cookie";
 import ErrorPage from "./pages/404";
+import Auth from "./pages/auth";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route element={<RequireAuth />} >
               <Route path="/dashboard/*" element={<Dashboard />} />
-              <Route path="/dashboard/panel-product" element={<ProcurementPanel />} />
+              <Route path="/payment" element={<ProcurementPanel />} />
             </Route>
             <Route path="*" element={< ErrorPage />} />
           </Route>
@@ -62,6 +63,7 @@ export function AppStructure({ children }) {
           <Footer />
         </div>
       </div>
+      <Auth />
     </Suspense>
 
   );
