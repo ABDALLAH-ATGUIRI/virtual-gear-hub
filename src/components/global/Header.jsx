@@ -161,16 +161,8 @@ export function Header() {
                             </div>
                             :
                             <div>
-                                <Link to='auth/login'>
-                                    <Button variant="text" size="sm" color="white">
-                                        Sign In
-                                    </Button>
-                                </Link>
-                                <Link to='auth/login'>
-                                    <Button variant="gradient" size="sm">
-                                        Sign Up
-                                    </Button>
-                                </Link>
+                                <Button variant="text" size="sm" color="white" onClick={() => dispatch(openDialog('register-user'))}>Sign In</Button>
+                                <Button variant="gradient" size="sm" onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
                             </div>
                     }
                 </div>

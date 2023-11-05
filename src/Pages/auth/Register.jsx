@@ -100,7 +100,7 @@ const RegistrationForm = () => {
                 footer: <>
                     {
                         message.message ?
-                            <Alert ref={errRef} className={`rounded-none border-l-4 font-medium ${message.type === 'error' ? 'border-red-500 text-red-500 bg-red-500/10 ' : 'border-green-500 text-green-500 bg-green-500/10 '}`}>
+                            <Alert ref={errRef} className={`rounded-none border-l-4 mb-4 font-medium ${message.type === 'error' ? 'border-red-500 text-red-500 bg-red-500/10 ' : 'border-green-500 text-green-500 bg-green-500/10 '}`}>
                                 {isLoading ? 'loading...' : message.message}
                             </Alert> : <></>
                     }
