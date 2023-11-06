@@ -1,46 +1,36 @@
-import { useState } from 'react'
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button,
-} from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, Typography, Button } from "@material-tailwind/react";
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import { PRODUCTSIMG } from "../../assets";
 
-export const CardProduct = ({ item }) => {
-    const [colors, setColors] = useState({
-        jus: 'text-yellow-500', salad: 'text-green-500', food: 'text-orange-500'
-    })
+export const ProductCard = ({ item }) => {
     return (
-        <Card className="overflow-hidden rounded-md bg-blue-gray-700/10 shadow-md shadow-blue-gray-800/10">
-            <CardHeader
-                floated={false}
-                shadow={false}
-                color="transparent"
-                className="m-0 h-full max-h-32 "
-            >
+        <Card color="transparent" className="relative flex flex-col justify-end h-[20rem] w-full max-w-[28rem] overflow-hidden shadow-md shadow-gray-800/10 [&>*]:bg-gray-700/10 text-center rounded-md  hover:border hover:border-secondary rounded-tl-lg">
+            <CardBody className='relative w-full flex flex-col items-center p-0'>
                 <img
-                    src={`http://localhost:8000/storage/${item.image}`}
+                    src={`${PRODUCTSIMG.glassvr_1}`}
                     alt="ui/ux review check "
-                    className="h-full mx-auto object-cover"
+                    className="absolute z-10 left-0 -top-20 h-full w-full object-fit"
                 />
-            </CardHeader>
-            <CardBody className='flex flex-col items-center h-full'>
-                <Typography variant="h5" className='text-blue-gray-100/40 text-center'>
-                    {item.name}
-                </Typography>
-                <Typography variant="lead" color="gray" className="mt-3 font-normal text-md">
-                    {item.category.name}
-                </Typography>
+                <div className="h-full px-4 mt-14">
+                    <Typography variant="h4" color="white"> {item.name} </Typography>
+                    <Typography color="gray" className="mt-1 font-normal text-xs" > {item.category.name} </Typography>
+                    <Typography color="white" className="mt-3 text-sm h-14" > {item.description} </Typography>
+                </div>
             </CardBody>
-            <CardFooter className="pt-0 flex flex-col items-center gap-2">
-                <Typography variant="h5" className="text-secondary font-extrabold text-xl">
+            <CardFooter className="p-0">
+                <Typography
+                    variant="paragraph"
+                    color="white"
+                    className="bg-secondary/60 absolute z-20 p-1 px-6 top-0 left-0 rounded-br-xl text-md font-semibold col-row-3"
+                >
                     {item.price} $
                 </Typography>
-                <Button variant="text" className="flex items-center gap-2 text-blue-gray-100">
-                    <PlusCircleIcon className="h-8 w-8 text-secondary" />
+                <Button
+                    fullWidth
+                    variant="text"
+                    className="flex items-center justify-center gap-2 text-blue-gray-100"
+                >
+                    <PlusCircleIcon className="h-10 w-10 text-secondary" />
                     Order Now
                 </Button>
             </CardFooter>
