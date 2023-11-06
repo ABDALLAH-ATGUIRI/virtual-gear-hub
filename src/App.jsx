@@ -9,6 +9,7 @@ import ProcurementPanel from "./pages/user/ProcurementPanel";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
 import Home from "./pages/home";
+import Catalogues from "./pages/user/Catalogues";
 import Cookies from "js-cookie";
 import ErrorPage from "./pages/404";
 import Auth from "./pages/auth";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Outlet />}>
             <Route path="/" element={<Navigate replace to="home" />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/catalogues" element={< Catalogues />} />
             <Route element={<RequireAuth />} >
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/payment" element={<ProcurementPanel />} />

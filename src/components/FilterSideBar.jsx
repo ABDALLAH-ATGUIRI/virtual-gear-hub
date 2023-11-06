@@ -55,7 +55,7 @@ function FilterSideBar() {
                     <Checkbox id="ripple-off" label="Resale projects" ripple={false} className="h-4 w-4 rounded-none border-gray-500 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0" />
                 </div>
             </div>
-            <div className="flex flex-col gap-6 py-6 px-4 items-center border-b border-gray-800">
+            <div className="flex flex-col gap-6 py-6 px-4 items-center">
                 <div className="w-full flex justify-between">
                     <Typography variant="h6" color="white">
                         Year of issue
