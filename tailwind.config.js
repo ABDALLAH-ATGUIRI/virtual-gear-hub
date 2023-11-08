@@ -16,6 +16,7 @@ export default withMT({
         primary: "#9c27b0",
         secondary: "#3f51b5",
         tertiary: "#bd2fd6",
+        light: "#fbf1fe",
         "black-100": "#100d25",
         "black-200": "#090325",
         "white-100": "#f3f3f3"
@@ -28,9 +29,9 @@ export default withMT({
       },
       backgroundImage: {
         "hero-bg-1": "url('../src/assets/images/blog_hero_bg_1.webp')",
-        "hero-bg-2": "url('../src/assets/images/blog_hero_bg_2.webp')",
+        "hero-bg-2": "url('../src/assets/images/blog_hero_bg_2.webp')"
       }
     }
   },
-plugins: ["tailwindcss ,autoprefixer"],
+  plugins: ["tailwindcss ,autoprefixer"]
 });

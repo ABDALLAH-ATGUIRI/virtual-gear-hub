@@ -1,13 +1,14 @@
 import { useState, createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { selectCurrentUser, setLogout } from '../../features/auth/authSlice';
 import { useLogoutMutation } from '../../features/auth/authApiSlice';
 import { openDialog } from '../../features/dialogsReducer';
-
 import { PROFILEMENUITEMS, NAVMENUS } from '../../utils/menus'
 import { ShoppingBagIcon, BellIcon, PowerIcon } from '@heroicons/react/24/outline';
 import { Navbar, Typography, Button, Menu, MenuHandler, Avatar, MenuList, MenuItem, Tabs, TabsHeader, Tab, Badge } from "@material-tailwind/react";
+import DarkMode from '../buttons/dark-mode.button';
+
 const ProfileMenu = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,7 +105,8 @@ const ProfileMenu = () => {
 }
 
 function NavList() {
-    const [activeTab, setActiveTab] = useState("Home");
+    const location = useLocation()
+    const [activeTab, setActiveTab] = useState(location.pathname);
 
     return (
         <Tabs value={activeTab}>
@@ -117,10 +119,9 @@ function NavList() {
                 {NAVMENUS.map(({ label, link }) => (
                     <Link key={label} to={link}>
                         <Tab
-
-                            value={label}
-                            onClick={() => setActiveTab(label)}
-                            className={`w-auto text-[14px] font-bold pb-2 ${activeTab === label ? "text-tertiary" : "text-gray-200"}`}
+                            value={link}
+                            onClick={() => setActiveTab(link)}
+                            className={`w-auto text-[14px] font-bold pb-2 ${activeTab === link ? "text-tertiary" : "text-gray-200"}`}
                         >
                             {label}
                         </Tab>
@@ -148,23 +149,27 @@ export function Header() {
                 </Typography>
                 <div className="w-2/3 flex items-center justify-between">
                     <NavList />
-                    {
-                        user ?
-                            <div className='flex items-center gap-4'>
-                                <ProfileMenu />
-                                <Badge color="purple" withBorder content="2" className='text-xs p-0 font-bold'>
-                                    <BellIcon className="h-7 cursor-pointer" />
-                                </Badge>
-                                <Badge color="purple" withBorder content="5" className='text-xs p-0 font-bold'>
-                                    <ShoppingBagIcon className="h-7 cursor-pointer" onClick={() => dispatch(openDialog('shopping-panel'))} />
-                                </Badge>
-                            </div>
-                            :
-                            <div>
-                                <Button variant="text" size="sm" color="white" onClick={() => dispatch(openDialog('register-user'))}>Sign In</Button>
-                                <Button variant="gradient" size="sm" onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
-                            </div>
-                    }
+
+                    <div className='flex items-center gap-4'>
+                        {
+                            user ?
+                                <>
+                                    <ProfileMenu />
+                                    <Badge color="purple" withBorder content="2" className='text-xs p-0 font-bold'>
+                                        <BellIcon className="h-7 cursor-pointer" />
+                                    </Badge>
+                                    <Badge color="purple" withBorder content="5" className='text-xs p-0 font-bold'>
+                                        <ShoppingBagIcon className="h-7 cursor-pointer" onClick={() => dispatch(openDialog('shopping-panel'))} />
+                                    </Badge>
+                                </>
+                                :
+                                <>
+                                    <Button variant="text" size="sm" color="white" onClick={() => dispatch(openDialog('register-user'))}>Sign In</Button>
+                                    <Button variant="gradient" size="sm" onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
+                                </>
+                        }
+                        <DarkMode />
+                    </div>
                 </div>
             </div>
         </Navbar >
