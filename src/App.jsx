@@ -56,7 +56,7 @@ export function AppStructure({ children }) {
 
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
-      <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-gray-900 ">
+      <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-light dark:bg-dark ">
         <div className="overscroll-auto relative flex flex-col">
           <Header />
           <div className="relative min-h-screen w-full">
