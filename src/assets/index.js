@@ -1,5 +1,6 @@
 import BlogBg from "./images/blog_hero_bg_1.webp";
 import LoginBg from "./images/login_bg.webp";
+import blog_hero_3 from "./images/blog_hero_bg_3.png";
 
 import glassvr_1 from "./images/product/glassvr_1.png";
 import glassvr_2 from "./images/product/glassvr_2.png";
@@ -15,7 +16,7 @@ import game_08 from "./images/games/game_08.jpg";
 
 import error_page from "./svg/error_page.svg";
 
-export { BlogBg, LoginBg };
+export { BlogBg, LoginBg, blog_hero_3 };
 
 export const SVGS = { error_page };
 

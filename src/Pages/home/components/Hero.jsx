@@ -1,5 +1,5 @@
 import { Button, Card, CardBody, CardHeader, Carousel, Typography } from "@material-tailwind/react";
-import { PNGS } from "../../../assets";
+import { PRODUCTSIMG, blog_hero_3 } from "../../../assets";
 
 function Hero() {
     return (
@@ -17,7 +17,7 @@ function Hero() {
             )}
         >
             <div className="bg-hero-bg-2 bg-cover bg-center flex justify-end" >
-                <div className="w-full bg-black/50 pt-56 pb-24">
+                <div className="w-full bg-black/30 pt-56 pb-28">
                     <div className="h-full flex flex-col gap-16 items-center text-center">
                         <div className="flex flex-col items-center gap-4">
                             <Typography variant="h5" color="white" className="uppercase text-blue-gray-50">
@@ -37,7 +37,7 @@ function Hero() {
                                     shadow={false}
                                     floated={false}
                                     className="m-0 w-1/2 shrink-0 bg-transparent p-1 h-full bg-cover"
-                                    style={{ backgroundImage: `url(${PNGS.glassvr_1})` }}
+                                    style={{ backgroundImage: `url(${PRODUCTSIMG.glassvr_1})` }}
                                 >
                                     <span></span>
                                 </CardHeader>
@@ -58,7 +58,7 @@ function Hero() {
                                     shadow={false}
                                     floated={false}
                                     className="m-0 w-1/2 shrink-0 bg-transparent p-1 h-full bg-cover "
-                                    style={{ backgroundImage: `url(${PNGS.glassvr_2})` }}
+                                    style={{ backgroundImage: `url(${PRODUCTSIMG.glassvr_2})` }}
 
                                 >
                                     <span></span>
@@ -77,6 +77,27 @@ function Hero() {
                             </Card>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="relative w-full bg-gray-900" >
+                <div className="relative w-5/6 p-96 clip-custom-shape bg-secondary/80">
+                    <img
+                        src={blog_hero_3}
+                        alt=""
+                        className="w-[40rem] absolute bottom-0 left-80 "
+                    />
+                </div>
+                <div className="absolute top-0 right-0 flex w-6/12 px-16 flex-col gap-6 justify-center items-center h-full text-center">
+                    <Typography variant="h1" color="white" className="uppercase font-extrabold text-[10rem] text-blue-gray-50">
+                        Bonus
+                    </Typography>
+                    <Typography variant="h4" className="text-white text-4xl">
+                        Get a bonus on all products
+                    </Typography>
+                    <Typography className="text-blue-gray-50 md:text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet, libero non mattis lacinia, erat felis accumsan tortor, nec eleifend velit justo quis dui. Ut euismod sapien vitae tristique posuere.
+                    </Typography>
+                    <Button className="rounded-full bg-secondary p-4 px-36 text-lg font-bold border-8 border-gray-900">to get catalog →</Button>
                 </div>
             </div>
         </Carousel >

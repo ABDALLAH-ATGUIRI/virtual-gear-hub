@@ -17,3 +17,7 @@
     background: #9c27b0;
     border-radius: 10px;
 }
+
+.clip-custom-shape {
+    clip-path: polygon(0% 0%, 70% 0%, 100% 100%, 50% 100%, 0% 100%);
+}
