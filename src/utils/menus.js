@@ -109,18 +109,18 @@ export const NAVMENUS = [
   },
   {
     label: "Payment",
-    link: "payment"
+    link: "/payment"
   },
   {
     label: "Delivery",
     link: "delivery"
   },
   {
-    label: "Catalogue",
-    link: "catalogue"
+    label: "Catalogues",
+    link: "/catalogues"
   },
   {
     label: "About us",
-    link: "about-us"
+    link: "/about-us"
   }
 ];
