@@ -3,7 +3,7 @@ import { Avatar, Button, IconButton, Typography } from '@material-tailwind/react
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import DialogDefault from '../../../../components/DialogDefault'
-import { PNGS } from '../../../../assets'
+import { PRODUCTSIMG } from '../../../../assets'
 
 const PRODUCTS = [
     {
@@ -56,9 +56,7 @@ const PanelDialog = () => {
                 </div>,
                 footer: <div className='w-full flex flex-row justify-between items-center'>
                     <div className='flex gap-10'>
-                        <Button className='w-52 py-6 bg-black/40 rounded-sm flex items-center justify-evenly'>
-                            Go to shopping page
-                        </Button>
+                        <Button className='w-52 py-6 bg-black/40 rounded-sm flex items-center justify-evenly'> Go to shopping page</Button>
                     </div>
                     <div className='px-8 py-1 rounded-sm text-center bg-gradient-to-tl from-purple-500 via-indigo-500 to-purple-600'>
                         <Typography className="font-medium !text-[12px]" > The total amount is </Typography>
@@ -91,7 +89,7 @@ const ProductCard = ({ product, handelCount }) => {
     return <div className={`reactive hover:border-2 hover:border-primary bg-black/20 rounded-md w-full flex items-center cursor-pointer`}>
         <div className='relative w-full flex justify-evenly py-6 shadow-l-2xl'>
             <div className='mx-12 p-8'>
-                <Avatar src={PNGS.glassvr_1} alt={name} size="xl" className="absolute h-[160%] -top-8 -left-10 w-auto" />
+                <Avatar src={PRODUCTSIMG.glassvr_1} alt={name} size="xl" className="absolute h-[160%] -top-8 -left-10 w-auto" />
             </div>
             <div className='w-full flex justify-around gap-2'>
                 <div className='flex gap-2 items-center flex-col'>
