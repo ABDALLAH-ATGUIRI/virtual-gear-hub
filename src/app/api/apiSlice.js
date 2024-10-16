@@ -3,7 +3,7 @@ import { setCredentials, setLogout } from "../../features/auth/authSlice";
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:8000/api",
+  baseUrl: env.REACT_APP_API_KEY,
   credentials: "include",
   prepareHeaders: (headers) => {
     const token = Cookies.get("token")?.replace(/%/g, "|");
