@@ -1,20 +1,20 @@
 import { Fragment, Suspense, useEffect, useState } from "react";
-import { RequireAuth } from "./features/auth/RequireAuth";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { useRefreshTokenMutation } from "./features/auth/authApiSlice";
-import { setCredentials } from "./features/auth/authSlice";
+import { useRefreshTokenMutation } from "../features/auth/authApiSlice";
+import { RequireAuth } from "../features/auth/RequireAuth";
+import { setCredentials } from "../features/auth/authSlice";
 import { useDispatch } from "react-redux";
-import Dashboard from "./pages/dashboard";
-import ProcurementPanel from "./pages/user/ProcurementPanel";
-import Header from "./components/global/Header";
-import Footer from "./components/global/Footer";
-import Home from "./pages/home";
-import Catalogues from "./pages/user/Catalogues";
+import Dashboard from "./dashboard";
+import ProcurementPanel from "./user/ProcurementPanel";
+import Header from "../components/global/Header";
+import Footer from "../components/global/Footer";
+import Home from "./home";
+import Catalogues from "./user/Catalogues";
+import ErrorPage from "./404";
+import Auth from "./auth";
 import Cookies from "js-cookie";
-import ErrorPage from "./pages/404";
-import Auth from "./pages/auth";
 
-function App() {
+function Index() {
   return (
     <Fragment>
       <AppStructure>
@@ -23,10 +23,10 @@ function App() {
             <Route path="/" element={<Navigate replace to="home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/catalogues" element={< Catalogues />} />
-            <Route element={<RequireAuth />} >
+            {/* <Route element={<RequireAuth />} > */}
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/payment" element={<ProcurementPanel />} />
-            </Route>
+            {/* </Route> */}
             <Route path="*" element={< ErrorPage />} />
           </Route>
         </Routes>
@@ -71,4 +71,4 @@ export function AppStructure({ children }) {
   );
 }
 
-export default App
+export default Index
