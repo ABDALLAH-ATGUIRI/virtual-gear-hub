@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ProductCard } from '../cards/product.card'
-import { useFetchAllProductsMutation } from '../../features/products/productApiSlice';
-import { selectCurrentProducts, setProductsCredentials } from '../../features/products/productSlice';
+import { useFetchAllProductsMutation } from '@features/products/productApiSlice';
+import { selectCurrentProducts, setProductsCredentials } from '@features/products/productSlice';
 import { GamesCard } from '../cards/games.card';
 import { PRODUCTSIMG } from '../../assets';
 

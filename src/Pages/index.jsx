@@ -1,8 +1,8 @@
 import { Fragment, Suspense, useEffect, useState } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { useRefreshTokenMutation } from "../features/auth/authApiSlice";
-import { RequireAuth } from "../features/auth/RequireAuth";
-import { setCredentials } from "../features/auth/authSlice";
+import { useRefreshTokenMutation } from "@features/auth/authApiSlice";
+import { RequireAuth } from "@features/auth/RequireAuth";
+import { setCredentials } from "@features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import Dashboard from "./dashboard";
 import ProcurementPanel from "./user/ProcurementPanel";

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
-import authReducer from "../features/auth/authSlice";
-import dialogsReducer from "../features/dialogsReducer";
-import productReducer from "../features/products/productSlice";
-import categoryReducer from "../features/categories/categorySlice";
+import authReducer from "@features/auth/authSlice";
+import dialogsReducer from "@features/dialogsReducer";
+import productReducer from "@features/products/productSlice";
+import categoryReducer from "@features/categories/categorySlice";
 
 const store = configureStore({
   reducer: {

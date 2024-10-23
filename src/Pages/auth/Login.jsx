@@ -2,10 +2,10 @@ import { Input, Button, Typography, Alert, } from "@material-tailwind/react";
 import { useState, useRef, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
-import { useLoginMutation } from "../../features/auth/authApiSlice";
-import { setCredentials } from "../../features/auth/authSlice";
+import { useLoginMutation } from "@features/auth/authApiSlice";
+import { setCredentials } from "@features/auth/authSlice";
+import { closeDialog } from "@features/dialogsReducer";
 import DialogDefault from "../../components/DialogDefault";
-import { closeDialog } from "../../features/dialogsReducer";
 
 const Login = () => {
 

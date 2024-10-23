@@ -1,9 +1,9 @@
 import { useState, createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { selectCurrentUser, setLogout } from '../../features/auth/authSlice';
-import { useLogoutMutation } from '../../features/auth/authApiSlice';
-import { openDialog } from '../../features/dialogsReducer';
+import { selectCurrentUser, setLogout } from '@features/auth/authSlice';
+import { useLogoutMutation } from '@features/auth/authApiSlice';
+import { openDialog } from '@features/dialogsReducer';
 import { PROFILEMENUITEMS, NAVMENUS } from '../../utils/menus'
 import { ShoppingBagIcon, BellIcon, PowerIcon } from '@heroicons/react/24/outline';
 import { Navbar, Typography, Button, Menu, MenuHandler, Avatar, MenuList, MenuItem, Tabs, TabsHeader, Tab, Badge } from "@material-tailwind/react";

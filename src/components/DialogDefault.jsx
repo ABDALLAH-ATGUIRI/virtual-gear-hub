@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDialog } from "../features/dialogsReducer";
+import { closeDialog } from "@features/dialogsReducer";
 
 function DialogDefault({ title, handle, children, dialogId, className }) {
     const { isOpen } = useSelector((store) => store.dialogs[dialogId] || false)

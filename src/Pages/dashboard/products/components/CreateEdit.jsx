@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Input, Option, Select, Textarea } from '@material-tailwind/react'
 import DialogDefault from '../../../../components/DialogDefault'
 
-import { useFetchCategoriesMutation } from '../../../../features/categories/categoryApiSlice'
-import { selectCurrentCategories, setCategoriesCredentials } from '../../../../features/categories/categorySlice'
-import { useCreateProductMutation, useUpdateProductMutation } from '../../../../features/products/productApiSlice'
+import { useFetchCategoriesMutation } from '@features/categories/categoryApiSlice'
+import { selectCurrentCategories, setCategoriesCredentials } from '@features/categories/categorySlice'
+import { useCreateProductMutation, useUpdateProductMutation } from '@features/products/productApiSlice'
 
 const DEFAULTFORM = {
     name: "",

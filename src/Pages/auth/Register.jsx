@@ -2,9 +2,9 @@ import { Input, Button, Typography, Alert } from "@material-tailwind/react";
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useRegisterMutation } from "../../features/auth/authApiSlice";
-import { setCredentials } from "../../features/auth/authSlice";
-import { closeDialog } from "../../features/dialogsReducer";
+import { useRegisterMutation } from "@features/auth/authApiSlice";
+import { setCredentials } from "@features/auth/authSlice";
+import { closeDialog } from "@features/dialogsReducer";
 import DialogDefault from "../../components/DialogDefault";
 
 const INITFORM = {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import Table from "../../../components/Table";
-import { openDialog } from "../../../features/dialogsReducer";
-import { useFetchMyProductsMutation } from "../../../features/products/productApiSlice";
-import { selectCurrentPagination, selectCurrentProducts, setProductsCredentials } from "../../../features/products/productSlice";
+import { openDialog } from "@features/dialogsReducer";
+import { useFetchMyProductsMutation } from "@features/products/productApiSlice";
+import { selectCurrentPagination, selectCurrentProducts, setProductsCredentials } from "@features/products/productSlice";
 import { CreateEdit } from "./components/CreateEdit";
 
 const TABLE_HEAD = ["", "Name", "Description", "Price", "Category", "Created at", "Actions"];
