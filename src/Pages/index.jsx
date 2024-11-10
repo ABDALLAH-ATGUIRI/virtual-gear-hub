@@ -1,8 +1,8 @@
-import { Fragment, Suspense, useEffect, useState } from "react";
+import { Fragment, Suspense, useCallback, useEffect } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { useRefreshTokenMutation } from "@features/auth/authApiSlice";
 import { RequireAuth } from "@features/auth/RequireAuth";
 import { setCredentials } from "@features/auth/authSlice";
+import { useAuthUserQuery } from "@features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import Dashboard from "./dashboard";
 import ProcurementPanel from "./user/ProcurementPanel";
@@ -12,7 +12,6 @@ import Home from "./home";
 import Catalogues from "./user/Catalogues";
 import ErrorPage from "./404";
 import Auth from "./auth";
-import Cookies from "js-cookie";
 
 function Index() {
   return (
@@ -23,10 +22,10 @@ function Index() {
             <Route path="/" element={<Navigate replace to="home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/catalogues" element={< Catalogues />} />
-            {/* <Route element={<RequireAuth />} > */}
+            <Route element={<RequireAuth />} >
               <Route path="/dashboard/*" element={<Dashboard />} />
               <Route path="/payment" element={<ProcurementPanel />} />
-            {/* </Route> */}
+            </Route>
             <Route path="*" element={< ErrorPage />} />
           </Route>
         </Routes>
@@ -36,39 +35,31 @@ function Index() {
 }
 
 export function AppStructure({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [refreshToken] = useRefreshTokenMutation()
-  const dispatch = useDispatch()
+	const dispatch = useDispatch();
+	const { data: authUser } = useAuthUserQuery();
 
-  useEffect(() => {
-    if (Cookies.get("token"))
-      new Promise((resolve, reject) => {
-        dispatch(refreshToken).unwrap().then((result) => {
-          dispatch(setCredentials({ ...result }))
-          setIsLoading(false)
-          resolve(result)
-        }).catch((err) => {
-          reject(err)
-          setIsLoading(false)
-        });
-      })
-  }, [dispatch])
+	// Memoized handler for setting user credentials
+	const handleSetCredentials = useCallback(() => {
+		if (authUser) {
+			dispatch(setCredentials(authUser));
+		}
+	}, [authUser, dispatch]);
 
-  return (
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <div className="relative w-full h-full duration-300 ease-in-out font-sans bg-light dark:bg-dark ">
-        <div className="overscroll-auto relative flex flex-col">
-          <Header />
-          <div className="relative min-h-screen w-full">
-            {children}
-          </div>
-          <Footer />
-        </div>
-      </div>
-      <Auth />
-    </Suspense>
+	useEffect(() => {
+		handleSetCredentials();
+	}, [handleSetCredentials]);
 
-  );
+	return (
+		<div className="relative w-full h-full duration-300 ease-in-out font-sans bg-light dark:bg-dark">
+			<div className="overscroll-auto relative flex flex-col min-h-screen">
+				<Header />
+				<Suspense fallback={<div>Loading...</div>}>
+					<main className="flex-grow">{children}</main>
+				</Suspense>
+				<Footer />
+			</div>
+			<Auth />
+		</div>
+	);
 }
-
-export default Index
+export default Index;

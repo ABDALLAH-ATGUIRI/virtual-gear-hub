@@ -1,10 +1,17 @@
-import { Navigate, Outlet, useLocation } from "react-router";
-import { selectCurrentToken } from "./authSlice";
-import { useSelector } from "react-redux";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuthUserQuery } from "@features/auth/authApiSlice";
 
 export const RequireAuth = () => {
-  const token = useSelector(selectCurrentToken);
-  const location = useLocation();
+	const { data: user, isLoading } = useAuthUserQuery();
+	const location = useLocation();
 
-  return token ? (<Outlet />) : (<Navigate to="/home" state={{ from: location }} replace />);
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	return user ? (
+		<Outlet />
+	) : (
+		<Navigate to="/home" state={{ from: location }} replace />
+	);
 };
