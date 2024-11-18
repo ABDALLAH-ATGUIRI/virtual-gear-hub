@@ -1,29 +1,32 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, setLogout } from "@features/auth/authSlice";
 
+// Base API configuration
 const baseQuery = fetchBaseQuery({
   // eslint-disable-next-line no-undef
   baseUrl: env.REACT_APP_API_KEY,
-  withCredentials: true,
   credentials: "include",
-  jsonContentType: "application/json",
-  prepareHeaders: (headers) => {
-    return headers;
-  }
 });
 
+// Reauthentication logic
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  if (result?.error?.originalStatus === 403) {
-    // send the refresh token to the server
-    const refreshResult = await baseQuery(args, "/refresh-token", extraOptions);
+
+  // If token is expired or invalid, try refreshing
+  if (result?.error?.status === 403) {
+    const refreshResult = api.useRefreshTokenMutation().unwrap();
+
     if (refreshResult?.data) {
-      const user = api.getState().auth.user;
-      // store the new token
-      api.dispatch(setCredentials({ ...refreshResult.data, user }));
-      // retry the original query with the new token
+      const { accessToken } = refreshResult.data;
+      const user = api.getState().auth?.user;
+
+      // Update token in the store
+      api.dispatch(setCredentials({ accessToken, user }));
+
+      // Retry the original request with the new token
       result = await baseQuery(args, api, extraOptions);
     } else {
+      // Logout if refresh token is invalid
       api.dispatch(setLogout());
     }
   }
@@ -31,7 +34,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   return result;
 };
 
+// API slice configuration
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({})
+  endpoints: () => ({}),
 });

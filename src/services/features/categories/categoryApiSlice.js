@@ -1,4 +1,4 @@
-import { apiSlice } from "../../app/api/apiSlice";
+import { apiSlice } from "../../api/apiSlice";
 
 export const categoryApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -6,18 +6,23 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
       query: (credentials) => ({
         url: "/categories",
         method: "GET",
-        withCredentials: true,
         params: { ...credentials }
-      })
+      }),
     }),
     createCategory: builder.mutation({
       query: (credentials) => ({
         url: "/categories",
         method: "POST",
-        withCredentials: true,
         params: { ...credentials }
       })
-    })
+    }),
+    updateCategory: builder.mutation({
+      query: (credentials) => ({
+        url: "/categories",
+        method: "PUT",
+        params: { ...credentials }
+      })
+    }),
   })
 });
 

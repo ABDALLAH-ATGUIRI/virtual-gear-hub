@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SVGS } from "../assets";
 import { Button } from "@material-tailwind/react";
 
 const ErrorPage = () => {
+    const navigate = useNavigate();
+
     return (
         <div>
             <section className="h-screen bg-secondary/70 flex flex-col items-center justify-center pt-12" >
@@ -21,11 +23,9 @@ const ErrorPage = () => {
                             >
                                 Oops! That page can’t be found
                             </h4>
-                            <Link to='/'>
-                                <Button className="text-base font-semibold  transition hover:text-primary">
-                                    Go To Home →
-                                </Button>
-                            </Link>
+                            <Button className="text-base font-semibold  transition hover:text-primary" onClick={()=>navigate('/home')}>
+                                Go To Home →
+                            </Button>
                         </div>
                     </div>
                 </div>

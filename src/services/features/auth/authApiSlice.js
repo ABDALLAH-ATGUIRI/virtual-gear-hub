@@ -1,4 +1,4 @@
-import { apiSlice } from "../../app/api/apiSlice";
+import { apiSlice } from "../../api/apiSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
@@ -25,7 +25,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 		}),
 		refreshToken: builder.mutation({
 			query: (credentials) => ({
-				url: "refresh-token",
+				url: "refresh",
 				method: "POST",
 				body: credentials,
 			}),
