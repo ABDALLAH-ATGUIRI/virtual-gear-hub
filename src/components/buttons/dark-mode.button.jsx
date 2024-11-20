@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
+import { BiMoon, BiSun } from 'react-icons/bi';
 import { IconButton } from '@material-tailwind/react';
 
 const DarkMode = () => {
@@ -21,10 +21,13 @@ const DarkMode = () => {
     }, [theme]);
 
     return (
-        <IconButton className='ml-2 cursor-pointer bg-light dark:bg-black shadow-2xl shadow-white drop-shadow-2xl' onClick={toggleTheme}>
-            {theme !== 'light' ? < SunIcon className="h-7 w-7" /> : <MoonIcon className="w-6 h-6 text-gray-900" />}
-        </IconButton>
-    )
+		<IconButton
+			className="ml-2 cursor-pointer bg-light dark:bg-black shadow-2xl shadow-white drop-shadow-2xl"
+			onClick={toggleTheme}
+		>
+			{theme !== "light" ? <BiSun size={18} /> : <BiMoon size={18} />}
+		</IconButton>
+	);
 }
 
 export default DarkMode

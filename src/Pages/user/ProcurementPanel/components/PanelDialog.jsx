@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Avatar, Button, IconButton, Typography } from '@material-tailwind/react'
-import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "@heroicons/react/24/solid";
-import DialogDefault from '../../../../components/DialogDefault'
-import { PRODUCTSIMG } from '../../../../assets'
+import { BiMinusCircle, BiPlusCircle, BiTrash } from 'react-icons/bi';
+import DialogDefault from '@/components/DialogDefault'
+import { PRODUCTSIMG } from '@/assets'
 
 const PRODUCTS = [
     {
@@ -118,7 +117,7 @@ const ProductCard = ({ product, handelCount }) => {
                         disabled={quantity === 1}
                         className='rounded-full w-7 h-7'
                     >
-                        <MinusCircleIcon className="h-8 w-8 text-gray-500" />
+                        <BiMinusCircle size={20} />
                     </IconButton>
                     <Typography
                         variant="paragraph"
@@ -128,7 +127,7 @@ const ProductCard = ({ product, handelCount }) => {
                         {quantity}
                     </Typography>
                     <IconButton onClick={next} className='rounded-full w-7 h-7'>
-                        <PlusCircleIcon className="h-8 w-8 text-gray-500" />
+                        <BiPlusCircle size={20} />
                     </IconButton>
                 </div>
                 <hr className='h-16 w-[0.5px] bg-gray-100/50' />
@@ -149,7 +148,7 @@ const ProductCard = ({ product, handelCount }) => {
                 </div>
             </div>
             <IconButton size='sm' className={`absolute right-0 top-0 rounded-sm bg-red-600/50 hover:bg-red-500`}>
-                <TrashIcon className="h-4 w-5" />
+                <BiTrash size={20} />
             </IconButton>
         </div>
     </div>

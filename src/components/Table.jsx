@@ -1,4 +1,4 @@
-import { PencilIcon, TrashIcon, PlusSmallIcon } from "@heroicons/react/24/solid";
+import { HiPencil, HiPlusSmall, HiTrash } from "react-icons/hi2";
 import {
     Card,
     Typography,
@@ -24,7 +24,8 @@ function Table({ handle, header, data, pagination, title, setCurrentPage }) {
                 </div>
                 <div className="flex item-center justify-end">
                     <Button className="bg-green-500 flex item-center gap-1 py-2.5 pr-5 pl-3" onClick={() => handle({ type: 'create' })}>
-                        <PlusSmallIcon className="h-6 w-6" />Create
+                        <HiPlusSmall size={20} />
+                        Create
                     </Button>
                 </div>
             </CardHeader>
@@ -107,11 +108,11 @@ function Table({ handle, header, data, pagination, title, setCurrentPage }) {
                                         </td>
                                         <td className={`py-4 w-32`}>
                                             <Button variant="text" onClick={() => handle({ type: 'update', data: item })}>
-                                                <PencilIcon className="h-5 w-5 mx-5 text-blue-600" />
+                                                <HiPencil size={20} className="mx-5 text-blue-600" />
                                             </Button>
 
                                             <Button variant="text" onClick={() => handle({ type: 'update', id: item.id })}>
-                                                <TrashIcon className="h-5 w-5 mx-5 text-red-600" />
+                                                <HiTrash size={20} className="mx-5 text-red-600" />
                                             </Button>
                                         </td>
                                     </tr>

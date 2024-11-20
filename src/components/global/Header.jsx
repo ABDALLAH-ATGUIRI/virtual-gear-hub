@@ -1,12 +1,25 @@
-import { useState, createElement } from 'react';
+import { useEffect , useState, createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { selectCurrentUser, setLogout } from '@features/auth/authSlice';
-import { useLogoutMutation } from '@features/auth/authApiSlice';
-import { openDialog } from '@features/dialogsReducer';
-import { PROFILEMENUITEMS, NAVMENUS } from '../../utils/menus'
-import { ShoppingBagIcon, BellIcon, PowerIcon } from '@heroicons/react/24/outline';
-import { Navbar, Typography, Button, Menu, MenuHandler, Avatar, MenuList, MenuItem, Tabs, TabsHeader, Tab, Badge } from "@material-tailwind/react";
+import { selectCurrentUser, setLogout } from '@/features/auth/authSlice';
+import { useLogoutMutation } from '@/features/auth/authApiSlice';
+import { openDialog } from '@/features/dialogsReducer';
+import { PROFILEMENUITEMS, NAVMENUS } from '@/utils/menus'
+import { BiBell, BiPowerOff, BiShoppingBag } from 'react-icons/bi';
+import {
+	Navbar,
+	Typography,
+	Button,
+	Menu,
+	MenuHandler,
+	Avatar,
+	MenuList,
+	MenuItem,
+	Tabs,
+	TabsHeader,
+	Tab,
+	Badge,
+} from "@material-tailwind/react";
 import DarkMode from '../buttons/dark-mode.button';
 
 const ProfileMenu = () => {
@@ -90,7 +103,7 @@ const ProfileMenu = () => {
                     onClick={() => handleLogout()}
                     className={`flex items-center py-1 gap-2 rounded hover:bg-gray-500/10 focus:bg-gray-500/10 active:bg-gray-500/10`}
                 >
-                    <PowerIcon color='red' className='w-5 h-5' />
+                    <BiPowerOff color='red' size={20}/>
                     <Typography
                         as="span"
                         className="font-normal"
@@ -105,27 +118,37 @@ const ProfileMenu = () => {
 }
 
 function NavList() {
-    const location = useLocation()
+    const location = useLocation();
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState(location.pathname);
+
+    useEffect(() => {
+        setActiveTab(location.pathname);
+    }, [location.pathname]);
+
+    const handleTabChange = (newTab) => {
+        setActiveTab(newTab);
+        navigate(newTab);  // Navigate to the new route
+    };
 
     return (
         <Tabs value={activeTab}>
             <TabsHeader
                 className="rounded-none bg-transparent p-0 flex gap-6"
                 indicatorProps={{
-                    className: "bg-transparent border-b-2 border-tertiary shadow-none rounded-none",
+                    className: "bg-transparent shadow-none rounded-none border-b-2 border-tertiary",
                 }}
             >
                 {NAVMENUS.map(({ label, link }) => (
-                    <Link key={label} to={link}>
-                        <Tab
-                            value={link}
-                            onClick={() => setActiveTab(link)}
-                            className={`w-auto text-[14px] font-bold pb-2 ${activeTab === link ? "text-tertiary" : "text-gray-200"}`}
-                        >
-                            {label}
-                        </Tab>
-                    </Link>
+                    <Tab
+                        key={label}
+                        value={link}
+                        onClick={() => handleTabChange(link)}
+                        className={`w-auto text-[14px] font-bold pb-2 text-gray-200`}
+                        activeClassName='!text-tertiary'
+                    >
+                        {label}
+                    </Tab>
                 ))}
             </TabsHeader>
         </Tabs>
@@ -137,7 +160,7 @@ export function Header() {
     const dispatch = useDispatch();
 
     return (
-        <Navbar className="!max-w-full px-12 py-1 mx-auto rounded-none border-0 !w-full bg-black/50 fixed z-40">
+        <Navbar className="!max-w-full py-0 h-16 mx-auto rounded-none border-0 !w-full bg-black/50 fixed z-40">
             <div className="flex items-center justify-between text-white w-full">
                 <Typography
                     as="a"
@@ -156,10 +179,10 @@ export function Header() {
                                 <>
                                     <ProfileMenu />
                                     <Badge color="purple" withBorder content="2" className='text-xs p-0 font-bold'>
-                                        <BellIcon className="h-7 cursor-pointer" />
+                                        <BiBell size={20} className="cursor-pointer" />
                                     </Badge>
                                     <Badge color="purple" withBorder content="5" className='text-xs p-0 font-bold'>
-                                        <ShoppingBagIcon className="h-7 cursor-pointer" onClick={() => dispatch(openDialog('shopping-panel'))} />
+                                        <BiShoppingBag size={20} className="cursor-pointer" onClick={() => dispatch(openDialog('shopping-panel'))} />
                                     </Badge>
                                 </>
                                 :

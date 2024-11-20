@@ -1,4 +1,4 @@
-import { PlusCircleIcon } from "@heroicons/react/24/outline"
+import { BiPlusCircle } from "react-icons/bi"
 import { Card, CardBody, CardFooter, CardHeader, IconButton, Typography } from "@material-tailwind/react"
 
 export const GamesCard = ({ item }) => {
@@ -24,7 +24,9 @@ export const GamesCard = ({ item }) => {
                         {item.category}
                     </Typography>
                 </div>
-                <IconButton size="md" className="rounded-full"><PlusCircleIcon className="h-10 w-10 text-secondary" /></IconButton>
+                <IconButton size="md" className="rounded-full">
+                    <BiPlusCircle size={20} />
+                </IconButton>
             </CardFooter>
         </Card>
     )

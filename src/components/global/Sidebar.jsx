@@ -12,7 +12,7 @@ import {
     AccordionBody,
 } from "@material-tailwind/react";
 
-import { ChevronDownIcon, Bars3BottomLeftIcon, Bars3BottomRightIcon } from "@heroicons/react/24/solid";
+import { HiChevronDoubleRight } from "react-icons/hi2";
 
 function Sidebar() {
     const [open, setOpen] = useState(0);
