@@ -1,9 +1,9 @@
 import { useEffect , useState, createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { selectCurrentUser, setLogout } from '@/features/auth/authSlice';
-import { useLogoutMutation } from '@/features/auth/authApiSlice';
-import { openDialog } from '@/features/dialogsReducer';
+import { selectCurrentUser, setLogout } from '@features/auth/authSlice';
+import { useLogoutMutation } from '@features/auth/authApiSlice';
+import { openDialog } from '@features/dialogsReducer';
 import { PROFILEMENUITEMS, NAVMENUS } from '@/utils/menus'
 import { BiBell, BiPowerOff, BiShoppingBag } from 'react-icons/bi';
 import {
@@ -20,7 +20,7 @@ import {
 	Tab,
 	Badge,
 } from "@material-tailwind/react";
-import DarkMode from '../buttons/dark-mode.button';
+import DarkModeButton from '../buttons/DarkModeButton';
 
 const ProfileMenu = () => {
 
@@ -191,7 +191,7 @@ export function Header() {
                                     <Button variant="gradient" size="sm" onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
                                 </>
                         }
-                        <DarkMode />
+                        <DarkModeButton />
                     </div>
                 </div>
             </div>
