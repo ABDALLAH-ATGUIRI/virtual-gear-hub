@@ -1,0 +1,24 @@
+/* Define reusable gradient styles */
+.gradient-bg {
+    @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+.gradient-border {
+    @apply border;
+    border-image: linear-gradient(to right, #7c1e8d, #3f51b5);
+    border-image-slice: 2;
+}
+
+/* Base button styles */
+.btn {
+    @apply px-4 py-2 !rounded font-medium text-sm transition-all duration-300 ease-in-out;
+}
+
+/* Specific button styles */
+.btn-sign-up {
+    @apply btn gradient-bg shadow hover:shadow-lg hover:opacity-90;
+}
+
+.btn-sign-in {
+    @apply btn gradient-border bg-transparent hover:bg-primary hover:text-white hover:opacity-90;
+}

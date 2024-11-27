@@ -20,7 +20,8 @@ import {
 	Tab,
 	Badge,
 } from "@material-tailwind/react";
-import DarkModeButton from '../buttons/DarkModeButton';
+import DarkModeButton from '../../buttons/DarkModeButton';
+import "./index.css"
 
 const ProfileMenu = () => {
 
@@ -187,8 +188,8 @@ export function Header() {
                                 </>
                                 :
                                 <>
-                                    <Button variant="text" size="sm" color="white" onClick={() => dispatch(openDialog('register-user'))}>Sign In</Button>
-                                    <Button variant="gradient" size="sm" onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
+                                    <Button variant="text" color='white' size="sm" className='btn-sign-in' onClick={() => dispatch(openDialog('register-user'))}>Sign In</Button>
+                                    <Button variant="text" size="sm" color='white'  className='btn-sign-up' onClick={() => dispatch(openDialog('login-user'))}>Sign Up</Button>
                                 </>
                         }
                         <DarkModeButton />
