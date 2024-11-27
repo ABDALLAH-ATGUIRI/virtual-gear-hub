@@ -1,0 +1,23 @@
+.card {
+    @apply bg-gradient-to-r from-secondary to-primary h-[90%] mt-16 w-52 relative z-30 flex pt-16 shadow-xl shadow-blue-gray-900/5 rounded-none transition-all ease-in-out duration-500
+}
+
+.active-menu{
+    /* @apply none */
+}
+
+.tab-btn{
+    @apply flex gap-4 !rounded-l-full hover:!bg-dark/90 active:!bg-dark focus:!bg-dark hover:!text-white !border-0 !p-2
+}
+
+.active-tab{
+    @apply bg-dark
+}
+
+.torgle-btn{
+    @apply !absolute -right-5 top-5 rounded-full
+}
+
+.list-menus{
+    @apply !min-w-0 !gap-4 !p-0 !pl-1 !pt-5
+}
