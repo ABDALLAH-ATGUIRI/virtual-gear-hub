@@ -1,0 +1,4 @@
+
+.logo{
+    @apply cursor-pointer text-white !font-extrabold flex flex-col items-center
+}
