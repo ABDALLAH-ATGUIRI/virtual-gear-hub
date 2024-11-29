@@ -7,7 +7,7 @@ import {
 	CardHeader,
 } from "@material-tailwind/react";
 import { BiPlusCircle } from "react-icons/bi";
-import { PRODUCTSIMG } from ".@/assets";
+import { PRODUCTSIMG } from "@/assets";
 
 export const ProductCard = ({ item }) => {
 	return (
