@@ -1,11 +1,14 @@
-import Hero from './components/Hero';
+import Footer from "../../components/global/Footer";
+import Header from "../../components/global/Header";
+import HomeLayout from "../../components/layouts/HomeLayout";
+import Hero from "./components/Hero";
 
-const Index = () => {
-    return (
-        <div className="min-h-screen flex flex-col justify-start items-center gap-8">
-            <Hero />
-        </div>
-    )
-}
+const Home = () => {
+	return (
+		<HomeLayout>
+			{{ Navbar: <Header />, Content: <Hero />, Footer: <Footer /> }}
+		</HomeLayout>
+	);
+};
 
-export default Index
+export default Home;
