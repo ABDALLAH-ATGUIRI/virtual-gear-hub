@@ -1,0 +1,13 @@
+/* style.css */
+
+.layout-container {
+    @apply w-full min-h-screen !flex !flex-row;
+}
+
+.main-content {
+    @apply flex flex-col max-h-screen w-full overflow-auto
+}
+
+.content-area {
+    @apply flex !h-full w-full min-h-screen mt-20 p-4
+}
