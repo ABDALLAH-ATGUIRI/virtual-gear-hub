@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Pages from "./Pages";
 
 import { Provider } from 'react-redux';
-import store from './services/store';
+import store from '@/services/store';
+import Pages from "@/pages";
 
 import "./index.css";
 
