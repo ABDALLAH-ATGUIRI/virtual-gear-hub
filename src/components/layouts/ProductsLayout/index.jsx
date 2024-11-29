@@ -65,7 +65,7 @@ const GAMES = [
         poster: PRODUCTSIMG.game_07
     },
 ]
-const ProductsSection = () => {
+const ProductsLayout = () => {
     const [fetch] = useFetchAllProductsMutation();
     const products = useSelector(selectCurrentProducts)
     const dispatch = useDispatch()
@@ -101,4 +101,4 @@ const ProductsSection = () => {
     )
 }
 
-export default ProductsSection
+export default ProductsLayout
