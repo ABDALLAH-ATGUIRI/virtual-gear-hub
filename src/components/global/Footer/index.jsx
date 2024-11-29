@@ -2,6 +2,7 @@ import "./style.css";
 import { SOCIAL } from "@/utils/data";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
+import Logo from "../Logo";
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
@@ -9,13 +10,14 @@ const Footer = () => {
 	return (
 		<footer className="footer">
 			{/* Logo */}
-			<Typography as="a" variant="h5" color="white" className="logo">
-				<span>ARENA</span>{" "}
-				<span className="text-deep-purple-600">GAME</span>
-			</Typography>
+			<Logo size="sm" />
 
 			{/* Copyright */}
-			<Typography variant="paragraph" color="current" className="copyright">
+			<Typography
+				variant="paragraph"
+				color="current"
+				className="copyright"
+			>
 				All rights reserved {currentYear} &copy;
 			</Typography>
 
