@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDialog } from "@features/dialogsReducer";
+import { closeDialog , selectIsOpen} from "@features/dialogsReducer";
 import { useCallback } from "react";
 
 function DialogDefault(props) {
-    const { title, handle, children: { body, footer }, dialogId, className } = props;
-    const isOpen = useSelector((store) => store.dialogs[dialogId] || false);
+    const { title, handle, children: { body, footer }, dialogId = null, className } = props;
+    const isOpen = useSelector((store) => selectIsOpen(store.dialogs[dialogId]));
     const dispatch = useDispatch();
 
     const handleClose = useCallback(() => {
