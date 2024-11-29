@@ -1,126 +1,112 @@
+import { AiOutlineProduct } from "react-icons/ai";
 import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon
-} from "@heroicons/react/24/solid";
+	HiCog6Tooth,
+	HiInbox,
+	HiInboxArrowDown,
+	HiLifebuoy,
+	HiMiniCog6Tooth,
+	HiMiniUserCircle,
+	HiPresentationChartBar,
+	HiShoppingBag,
+	HiUserCircle,
+} from "react-icons/hi2";
+import { MdOutlineCategory } from "react-icons/md";
 
 export const SIDEBARMENUS = [
-  {
-    id: 1,
-    name: "Dashboard",
-    icon: PresentationChartBarIcon,
-    children: [
-      {
-        id: 1,
-        name: "Analytics",
-        icon: "",
-        link: "analytics"
-      },
-      {
-        id: 2,
-        name: "Reports",
-        icon: "",
-        link: "reports"
-      },
-      {
-        id: 3,
-        name: "Projects",
-        icon: "",
-        link: "projects"
-      }
-    ]
-  },
-  {
-    id: 2,
-    name: "E-commerce",
-    icon: ShoppingBagIcon,
-    children: [
-      {
-        id: 1,
-        name: "orders",
-        icon: "",
-        link: "orders"
-      },
-      {
-        id: 2,
-        name: "products",
-        icon: "",
-        link: "products"
-      },
-      {
-        id: 3,
-        name: "categories",
-        icon: "",
-        link: "categories"
-      }
-    ]
-  },
-  {
-    id: 5,
-    name: "Inbox",
-    icon: InboxIcon,
-    link: "/inbox"
-  },
-  {
-    id: 3,
-    name: "Profile",
-    icon: UserCircleIcon,
-    link: "/profile"
-  },
-  {
-    id: 4,
-    name: "Settings",
-    icon: Cog6ToothIcon,
-    link: "/settings"
-  }
+	{
+		id: 1,
+		name: "Dashboard",
+		icon: HiPresentationChartBar,
+		link: "dashboard"
+	},
+	{
+		id: 2,
+		name: "E-commerce",
+		icon: HiShoppingBag,
+		link: "e-commerce",
+		children: [
+			{
+				id: 1,
+				name: "orders",
+				icon: "",
+				link: "orders",
+			},
+		],
+	},
+	{
+		id: 6,
+		name: "products",
+		icon: AiOutlineProduct,
+		link: "products",
+	},
+	{
+		id: 7,
+		name: "categories",
+		icon: MdOutlineCategory,
+		link: "categories",
+	},
+	{
+		id: 5,
+		name: "Inbox",
+		icon: HiInbox,
+		link: "inbox",
+	},
+	{
+		id: 3,
+		name: "Profile",
+		icon: HiUserCircle,
+		link: "profile",
+	},
+	{
+		id: 4,
+		name: "Settings",
+		icon: HiCog6Tooth,
+		link: "settings",
+	},
 ];
 
 export const PROFILEMENUITEMS = [
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-    link: "/profile"
-  },
-  {
-    label: "Dashboard",
-    icon: Cog6ToothIcon,
-    link: "/dashboard"
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-    link: "/inbox"
-  },
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-    link: "/help"
-  }
+	{
+		label: "My Profile",
+		icon: HiMiniUserCircle,
+		link: "/profile",
+	},
+	{
+		label: "Backoffice",
+		icon: HiMiniCog6Tooth,
+		link: "/backoffice",
+	},
+	{
+		label: "Inbox",
+		icon: HiInboxArrowDown,
+		link: "/inbox",
+	},
+	{
+		label: "Help",
+		icon: HiLifebuoy,
+		link: "/help",
+	},
 ];
 
 export const NAVMENUS = [
-  {
-    label: "Home",
-    link: "/home"
-  },
-  {
-    label: "Payment",
-    link: "/payment"
-  },
-  {
-    label: "Delivery",
-    link: "delivery"
-  },
-  {
-    label: "Catalogues",
-    link: "/catalogues"
-  },
-  {
-    label: "About us",
-    link: "/about-us"
-  }
+	{
+		label: "Home",
+		link: "/home",
+	},
+	{
+		label: "Payment",
+		link: "/payment",
+	},
+	{
+		label: "Delivery",
+		link: "delivery",
+	},
+	{
+		label: "Catalogues",
+		link: "/catalogues",
+	},
+	{
+		label: "About us",
+		link: "/about-us",
+	},
 ];
