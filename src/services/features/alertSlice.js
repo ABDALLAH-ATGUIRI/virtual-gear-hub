@@ -17,10 +17,10 @@ const alertSlice = createSlice({
 		},
 		hideAlert: (state) => {
 			state.open = false;
-			state.message = "";
 		},
 	},
 });
 
 export const { showAlert, hideAlert } = alertSlice.actions;
+export const selectAlert = (state) => state.alert;
 export default alertSlice.reducer;

@@ -1,10 +1,11 @@
 import { Alert, Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { hideAlert } from "@/services/features/alertSlice";
+import { selectAlert } from "@/services/features/alertSlice";
 
 const GlobalAlert = () => {
 	const dispatch = useDispatch();
-	const { message, type, open } = useSelector((state) => state.alert);
+	const { message, type, open } = useSelector(selectAlert);
 
 	const closeAlert = () => {
 		dispatch(hideAlert());
@@ -15,14 +16,13 @@ const GlobalAlert = () => {
 			open={open}
 			autoHideDuration={2000}
 			onClose={closeAlert}
-			severity={type}
 			anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-			sx={{ zIndex: "100000 !important" }}
+			className="!z-[99999]"
 		>
 			<Alert
 				onClose={closeAlert}
 				variant="filled"
-				sx={{ width: "100%" }}
+				severity={type}
 			>
 				{message}
 			</Alert>
