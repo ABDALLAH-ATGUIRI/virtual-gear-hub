@@ -1,67 +1,73 @@
-import { Fragment, Suspense, useCallback, useEffect } from "react";
+import { lazy, Suspense, useEffect, useMemo } from "react";
+import propTypes from "prop-types";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { setCredentials } from "@features/auth/authSlice";
 import { useAuthUserQuery } from "@features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
-import Backoffice from "./Backoffice";
-import Header from "@/components/global/Header";
-import Footer from "@/components/global/Footer";
-import Home from "./home";
-import Catalogues from "./user/Catalogues";
-import ErrorPage from "./404";
+import GlobalAlert from "@/components/global/Alert/GlobalAlert";
 import Auth from "./auth";
 
-function Index() {
-	return (
-		<Fragment>
-			<AppStructure>
-				<Routes>
-					<Route path="/" element={<Outlet />}>
-						<Route
-							path="/"
-							element={<Navigate replace to="home" />}
-						/>
-						<Route path="/home" element={<Home />} />
-						<Route path="/catalogues" element={<Catalogues />} />
-						<Route path="/backoffice/*" element={<Backoffice />} />
-						{/*
-							<Route element={<RequireAuth />} >
-									<Route path="/payment" element={<ProcurementPanel />} />
-							</Route>
-						*/}
-						<Route path="*" element={<ErrorPage />} />
-					</Route>
-				</Routes>
-			</AppStructure>
-		</Fragment>
-	);
-}
+// Lazy load components
+const Backoffice = lazy(() => import("./Backoffice"));
+const Home = lazy(() => import("./home"));
+const Catalogues = lazy(() => import("./user/Catalogues"));
+const ErrorPage = lazy(() => import("./404"));
 
-export function AppStructure({ children }) {
+function App() {
 	const dispatch = useDispatch();
 	const { data: authUser } = useAuthUserQuery();
 
-	// Memoized handler for setting user credentials
-	const handleSetCredentials = useCallback(() => {
+	useEffect(() => {
 		if (authUser) {
 			dispatch(setCredentials(authUser));
 		}
 	}, [authUser, dispatch]);
 
 	useEffect(() => {
-		handleSetCredentials();
-	}, [handleSetCredentials]);
-
-	useEffect(() => {
-		document.body.className = localStorage.getItem("theme");
+		const theme = localStorage.getItem("theme");
+		if (theme) document.body.className = theme;
 	}, []);
 
+	const routes = useMemo(
+		() => [
+			{ path: "/", element: <Navigate replace to="home" /> },
+			{ path: "home", element: <Home /> },
+			{ path: "catalogues", element: <Catalogues /> },
+			{ path: "backoffice/*", element: <Backoffice /> },
+			{ path: "*", element: <ErrorPage /> },
+		],
+		[]
+	);
+
+	return (
+		<AppStructure>
+			<Routes>
+				<Route path="/" element={<Outlet />}>
+					{routes.map((route, index) => (
+						<Route
+							key={index}
+							path={route.path}
+							element={route.element}
+						/>
+					))}
+				</Route>
+			</Routes>
+		</AppStructure>
+	);
+}
+
+function AppStructure({ children }) {
 	return (
 		<div className="app">
 			<Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
 			<Auth />
+			<GlobalAlert />
 		</div>
 	);
 }
 
-export default Index;
+AppStructure.propTypes = {
+	children: propTypes.node,
+};	
+
+export default App;
