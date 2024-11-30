@@ -4,6 +4,7 @@ import authReducer from "@features/auth/authSlice";
 import dialogsReducer from "@features/dialogsReducer";
 import productReducer from "@features/products/productSlice";
 import categoryReducer from "@features/categories/categorySlice";
+import alertReducer from "@features/alertSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     auth: authReducer,
     dialogs: dialogsReducer,
     product: productReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    alert: alertReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
