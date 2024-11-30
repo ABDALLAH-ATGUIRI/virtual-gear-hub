@@ -1,0 +1,19 @@
+
+.input-text{
+    @apply dark:text-gray-300
+}
+.form{
+    @apply flex flex-col gap-6 p-4 rounded-md shadow-md bg-inherit space-y-4
+}
+
+.input{
+    @apply mb-4 bg-white dark:bg-white/10 dark:!text-white !border-0 !shadow-none focus:!border-0 focus:!shadow-none focus:!bg-white focus:!bg-opacity-10
+}
+
+.submit-btn{
+    @apply bg-primary text-white py-2 px-4 rounded-md !w-full transition-all ease-in-out duration-500
+}
+
+.checkbox{
+    @apply !border-0 !shadow-none focus:!shadow-none
+}
