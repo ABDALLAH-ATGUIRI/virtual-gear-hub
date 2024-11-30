@@ -3,9 +3,10 @@ import { setCredentials, setLogout } from "@features/auth/authSlice";
 
 // Base API configuration
 const baseQuery = fetchBaseQuery({
-  // eslint-disable-next-line no-undef
-  baseUrl: env.REACT_APP_API_KEY,
-  credentials: "include",
+	// eslint-disable-next-line no-undef
+	baseUrl: "api",
+	jsonContentType: "application/json",
+	credentials: "include",
 });
 
 // Reauthentication logic
