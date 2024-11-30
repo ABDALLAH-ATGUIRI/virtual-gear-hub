@@ -1,0 +1,7 @@
+.auth-footer{
+    @apply w-full px-2 flex justify-between text-center font-normal
+}
+
+.link-footer{
+    @apply font-medium text-primary hover:underline cursor-pointer
+}
