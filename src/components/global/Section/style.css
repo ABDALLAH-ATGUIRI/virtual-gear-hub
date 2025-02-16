@@ -1,0 +1,31 @@
+.section-screen{
+    @apply h-screen flex flex-col md:flex-row items-center justify-center gap-6 
+}
+
+.left-countent{
+    @apply flex w-full md:w-1/2 h-64 md:h-2/3 gap-12 justify-center items-center
+}
+
+.right-countent{
+    @apply flex-1 flex flex-col justify-center items-start space-y-6 text-center md:text-left px-6
+}
+
+.section-title{
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent !font-black leading-tight tracking-wide
+}
+
+.section-description{
+    @apply !text-xl md:w-4/5
+}
+
+.section-button{
+    @apply !rounded-full !bg-tertiary py-3 px-12 text-lg !font-bold shadow-lg hover:shadow-xl transition-all duration-300
+}
+
+.section-play-button{
+    @apply border-2 border-purple-600 rounded-full hover:scale-110 transition-transform duration-300
+}
+
+.decorative-shape{
+    @apply bg-gradient-to-br from-purple-700 to-blue-700 
+}

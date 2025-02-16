@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import "./index.css";
+import "./style.css";
 
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -15,8 +15,9 @@ import {
 	Accordion,
 	AccordionHeader,
 	AccordionBody,
-	IconButton,
 } from "@material-tailwind/react";
+import Logo from "../Logo";
+import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material";
 
 function Sidebar() {
 	const [sidebarState, setSidebarState] = useState({
@@ -52,18 +53,24 @@ function Sidebar() {
 	const isManualToggle = sidebarState.isManualToggle;
 
 	return (
-		<div className="flex items-center justify-center h-screen">
+		<Box className="flex flex-col items-center justify-center h-screen">
 			<Card
 				className={`card ${isCollapsed && "!w-16"}`}
 				onMouseEnter={() => handleMouseInteraction(true)}
 				onMouseLeave={() => handleMouseInteraction(false)}
 			>
-				<IconButton
-					onClick={toggleSidebar}
-					className={`torgle-btn ${isManualToggle && "rotate-180"}`}
-				>
-					<HiChevronDoubleRight size={20} />
-				</IconButton>
+				<Toolbar className="bg-black flex justify-center items-center">
+					<IconButton
+						onClick={toggleSidebar}
+						className={`torgle-btn ${
+							isManualToggle && "rotate-180"
+						}`}
+					>
+						<HiChevronDoubleRight size={20} />
+					</IconButton>
+					<Logo size={isCollapsed ? "sm" : "lg"} />
+				</Toolbar>
+
 				<List className="list-menus">
 					{SIDEBARMENUS.map((menu, index) => (
 						<MenuItem
@@ -75,7 +82,7 @@ function Sidebar() {
 					))}
 				</List>
 			</Card>
-		</div>
+		</Box>
 	);
 }
 

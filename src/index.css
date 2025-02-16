@@ -1,6 +1,13 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
 
 .costume-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -20,4 +27,27 @@
 
 .clip-custom-shape {
     clip-path: polygon(0% 0%, 70% 0%, 100% 100%, 50% 100%, 0% 100%);
+}
+
+@layer base {
+    * {
+        @apply text-gray-900 dark:text-light m-0 p-0
+    }
+
+    main {
+        @apply w-full
+    }
+
+    svg {
+        @apply text-gray-900;
+    }
+
+    .dark svg {
+        @apply text-gray-100;
+    }
+
+    .app {
+        @apply relative w-full min-h-screen flex flex-col duration-300 ease-in-out font-sans bg-light dark:bg-dark
+    }
+
 }

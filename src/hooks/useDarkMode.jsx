@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useDarkMode = () => {
+export default function useDarkMode() {
 	const matchDark = "(prefers-color-scheme: dark)";
 
 	// Initialize state from localStorage or system preference
@@ -29,6 +29,4 @@ const useDarkMode = () => {
 	}, [isDarkMode]);
 
 	return [isDarkMode, setIsDarkMode];
-};
-
-export default useDarkMode;
+}

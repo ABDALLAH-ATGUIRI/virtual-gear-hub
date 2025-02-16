@@ -8,10 +8,10 @@ import GlobalAlert from "@/components/global/Alert/GlobalAlert";
 import Auth from "./auth";
 
 // Lazy load components
+const Guest = lazy(() => import("./guest"));
+
 const Backoffice = lazy(() => import("./Backoffice"));
-const Home = lazy(() => import("./home"));
 const Catalogues = lazy(() => import("./user/Catalogues"));
-const ErrorPage = lazy(() => import("./404"));
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,10 +31,9 @@ function App() {
 	const routes = useMemo(
 		() => [
 			{ path: "/", element: <Navigate replace to="home" /> },
-			{ path: "home", element: <Home /> },
 			{ path: "catalogues", element: <Catalogues /> },
 			{ path: "backoffice/*", element: <Backoffice /> },
-			{ path: "*", element: <ErrorPage /> },
+			{ path: "/*", element: <Guest /> },
 		],
 		[]
 	);

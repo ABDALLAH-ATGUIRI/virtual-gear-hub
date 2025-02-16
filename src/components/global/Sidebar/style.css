@@ -1,5 +1,5 @@
 .card {
-    @apply bg-gradient-to-r from-secondary to-primary h-[90%] mt-16 w-52 relative z-30 flex pt-16 shadow-xl shadow-blue-gray-900/5 rounded-none transition-all ease-in-out duration-500
+    @apply bg-gradient-to-r from-secondary to-primary h-[95%] w-52 relative z-30 flex py-4 shadow-xl shadow-blue-gray-900/5 rounded-none transition-all ease-in-out duration-500
 }
 
 .active-menu{
@@ -15,7 +15,7 @@
 }
 
 .torgle-btn{
-    @apply !absolute -right-5 top-5 rounded-full
+    @apply !absolute -right-12 rounded-full !bg-gray-200/25 !z-50
 }
 
 .list-menus{

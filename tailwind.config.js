@@ -16,7 +16,7 @@ export default withMT({
         secondary: "#3f51b5",
         tertiary: "#bd2fd6",
         light: "#f1ecf9",
-        dark: "#2a292d",
+        dark: "#0e051d",
         "black-100": "#100d25",
         "black-200": "#090325",
         "white-100": "#f3f3f3"
@@ -29,7 +29,11 @@ export default withMT({
       },
       backgroundImage: {
         "hero-bg-1": "url('../src/assets/images/blog_hero_bg_1.webp')",
-        "hero-bg-2": "url('../src/assets/images/blog_hero_bg_2.webp')"
+        "hero-bg-2": "url('../src/assets/images/blog_hero_bg_2.webp')",
+        "hero-bg-4": "url('../src/assets/images/blog_hero_bg_4.png')",
+      },
+      backgroundColor: {
+        "btn-default": "#100d25",
       }
     }
   },

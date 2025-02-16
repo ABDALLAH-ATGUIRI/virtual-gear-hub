@@ -1,6 +1,6 @@
 /* Reusable Layout & Component Styles */
 .header {
-    @apply flex items-center justify-between px-4 md:px-8 shadow-md w-full;
+    @apply flex items-center justify-between px-4 md:px-8 shadow-md w-full fixed !z-50 dark:bg-black/10 bg-white/5;
 }
 
 .menu-tabs {
